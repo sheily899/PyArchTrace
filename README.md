@@ -114,4 +114,4 @@ architecture-diagram scan D:\my-python-project -o D:\my-python-project\docs\arch
 
 ## 许可
 
-仓库当前未附带许可证文件，因此尚未声明特定的开源许可。
+本项目采用 [MIT 许可证](LICENSE)，版权标注为 `sheily899`。你可以使用、修改和再发布本项目，但需保留版权与许可声明。

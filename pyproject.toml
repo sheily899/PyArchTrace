@@ -7,6 +7,8 @@ name = "architecture-diagram"
 version = "0.1.0"
 description = "Evidence-grounded Chinese architecture, sequence, and flow diagrams"
 requires-python = ">=3.10"
+license = { text = "MIT" }
+classifiers = ["License :: OSI Approved :: MIT License"]
 dependencies = []
 
 [project.optional-dependencies]

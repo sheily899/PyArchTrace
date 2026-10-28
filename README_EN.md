@@ -114,4 +114,4 @@ architecture-diagram scan D:\my-python-project -o D:\my-python-project\docs\arch
 
 ## License
 
-No license file is included yet, so the repository does not currently declare a specific open-source license.
+This project is licensed under the [MIT License](LICENSE), with copyright attributed to `sheily899`. You may use, modify, and redistribute the project, provided that the copyright and license notices are retained.
