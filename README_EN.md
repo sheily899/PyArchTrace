@@ -2,60 +2,79 @@
 
 # PyArchTrace
 
-### Evidence-backed architecture diagrams for Python codebases
+### Turn Python code into architecture diagrams you can explore
 
 [简体中文](README.md) · [English](README_EN.md)
 
 <img alt="Python 3.10+" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white">
 <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill-20232A?logo=openai&logoColor=white">
-<img alt="Evidence backed" src="https://img.shields.io/badge/Architecture-Evidence--backed-2563EB">
 
-**Turn Python source evidence into architecture, sequence, and end-to-end flow diagrams.**
+**Describe what you want to understand. PyArchTrace turns Python source into architecture, sequence, and business-flow diagrams.**
 
 </div>
 
-PyArchTrace is a Codex Skill and CLI for Python projects. It helps you organize code modules, verified relationships, and important paths into diagrams you can review. You confirm the structure before rendering. The resulting standalone HTML supports module dragging and drill-down, and exports to SVG and PNG.
+Start with the system overview, then open a module to see how it works inside. Diagrams are grounded in source code, can be rearranged and explored in the browser, and can be exported as SVG or PNG.
 
-> The diagram is grounded in source evidence—not guessed from directory names.
+<p align="center"><b>Describe the goal → Review the structure → Explore the diagram</b></p>
 
-## See what it produces
+## From overview to detail
 
-The examples below show a runtime architecture, a message-processing sequence, and a drill-down into a routing branch. Each is presented as a separate view for its reading purpose, rather than combined into one oversized graphic.
+### Runtime architecture: what is the system made of?
 
-### Runtime architecture: understand the system at a glance
-
-Swimlanes show the entry, orchestration, capability, business-service, and data areas. Cross-cutting governance sits in a side rail. The main view stays at overview level; module relationships can be explored through drill-downs.
+Layers follow the responsibilities found in the project code, such as entry points, orchestration, capabilities, business services, and data. Cross-cutting concerns appear in a side rail; missing layers are not invented to fit a template.
 
 <p align="center">
-  <img src="docs/images/architecture-overview.png" alt="Example Chinese runtime architecture diagram generated with PyArchTrace" width="100%">
+  <img src="docs/images/architecture-overview.png" alt="Runtime architecture overview example" width="100%">
 </p>
-<p align="center"><sub>Runtime architecture example · layered overview with a governance side rail</sub></p>
+<p align="center"><sub>Runtime architecture overview · layers and cross-cutting governance</sub></p>
 
-### Message sequence: follow a request over time
+### Message sequence: what happens during a request?
 
-Participants appear across the top, while messages progress downward in order. This view is useful for tracing a request from user input through the system response.
+Sequence diagrams lay out participants and messages over time, making it easier to follow a request from user input through processing to the response.
 
 <p align="center">
-  <img src="docs/images/message-sequence.png" alt="Example message-processing sequence diagram generated with PyArchTrace" width="100%">
+  <img src="docs/images/message-sequence.png" alt="Message-processing sequence diagram example" width="100%">
 </p>
-<p align="center"><sub>Message sequence example · primary and asynchronous calls shown separately</sub></p>
+<p align="center"><sub>Message sequence · follow a request and response over time</sub></p>
 
-### Drill-down flow: inspect how routing reaches specific capabilities
+### Drill into a module: where do its branches lead?
 
-Open a module to inspect its internal steps and branches. This keeps the overview readable without hiding the real relationships from the deeper view.
+Open a module from the overview to inspect its internal steps, parallel branches, and business endpoints. Return to the parent view without losing context.
 
 <p align="center">
-  <img src="docs/images/agent-routing-drilldown.png" alt="Example agent selection and routing drill-down generated with PyArchTrace" width="100%">
+  <img src="docs/images/agent-routing-drilldown.png" alt="Agent-routing drill-down example" width="100%">
 </p>
-<p align="center"><sub>Routing drill-down example · parallel branches and their business endpoint</sub></p>
+<p align="center"><sub>Routing drill-down · explore branches and their processing endpoints</sub></p>
 
-## What it focuses on
+## Call the Skill in plain language
 
-- **Traceable evidence:** modules and relationships point back to source paths and locations; unsupported relationships are excluded.
-- **Structure review before rendering:** candidate extraction, layering, relationship extraction, and main-path checks produce an intermediate model for your approval.
-- **Overview and detail stay readable:** the main diagram presents layers and the primary path; internal behavior belongs in drill-downs or sequence diagrams.
-- **Rule-based layout and audit:** deterministic swimlanes, relationship routing, geometry checks, and browser screenshots constrain the result.
-- **Editable locally:** open the standalone HTML offline, drag modules, drill down and return, then export SVG or PNG.
+You do not need to write JSON, place nodes by hand, or design arrow paths. Tell the Skill where the project is, which flow you care about, and what you want to learn. It presents the structure for your confirmation before generating the final diagram.
+
+**Generate a project overview**
+
+> Use `$architecture-diagram` to read this Python project and map its runtime architecture from the actual code responsibilities. Show me the layers and primary path first; wait for my confirmation before generating the interactive diagram.
+
+**Trace an end-to-end request**
+
+> Use `$architecture-diagram` to draw a sequence diagram for “user submits a query through results returned.” Show the modules, capabilities, and data reads or writes along the way.
+
+**Explore a module in detail**
+
+> Add a drill-down for the “knowledge retrieval” module. Show how the query is built, retrieved, ranked, and returned.
+
+**Set the analysis scope**
+
+> Focus on the online request path. Skip tests, offline evaluations, and deployment files. Include only relationships supported by the Python source.
+
+You can also say “focus on order processing,” “explain the human handoff path,” or “expand intent recognition” to focus the diagram on what you need to understand.
+
+## What you can do with the result
+
+- **Three views:** runtime architecture, sequence diagrams, and end-to-end flows.
+- **Interactive drill-down:** open a module, explore its internal relationships, and return to the overview.
+- **Rearrange the diagram:** drag modules and let related arrows update; restore the automatic layout at any time.
+- **Share and edit:** export a crisp PNG or SVG, or open the standalone HTML offline.
+- **Trace back to code:** modules and relationships link to source locations for follow-up.
 
 ## Quick start
 
@@ -67,47 +86,24 @@ cd PyArchTrace
 python -m pip install -e ".[dev,browser]"
 ```
 
-This installs the CLI, development checks, and browser-capture support. Capturing screenshots requires Chrome or Edge to be available locally. To install only the base CLI:
+Place the repository in your Codex Skills directory as `architecture-diagram`, then call it with natural-language prompts like the examples above. Browser screenshots require Chrome or Edge installed locally. To use only the CLI, run `python -m pip install -e .`.
 
-```powershell
-python -m pip install -e .
-```
-
-### Use the Skill in Codex
-
-Place the repository in a Skills directory configured for Codex so that `SKILL.md` is at the root of the `architecture-diagram` Skill. Then, in a Python project, ask:
-
-> Use `$architecture-diagram` to analyze this project. Show me the structure review first, and wait for my confirmation before generating the diagrams.
-
-The Skill pauses at the structure checkpoint. It does not render final diagrams or screenshots before explicit confirmation.
-
-### Scan a project with the CLI
+Example CLI project scan:
 
 ```powershell
 architecture-diagram scan D:\my-python-project -o D:\my-python-project\docs\architecture-diagram\facts.json
 ```
 
-The CLI also provides commands for work-order generation, analysis audits, structure review and approval, validation, rendering, and browser capture. See the [analysis stages](references/analysis-stages.md) and [Skill workflow](SKILL.md) for the complete process and options.
+## Scope
 
-## Scope and limitations
+- Currently intended for **Python projects**; mixed-language repositories are analyzed only for their Python subsystem.
+- The tool does not import or execute the project being analyzed. Dynamic imports, reflection, and configuration-driven relationships may not be fully discovered by static scanning.
+- Python code provides navigation clues; module responsibilities and calls are grounded in source reading.
 
-- Currently supports **Python projects**. In mixed-language repositories, only the Python subsystem is analyzed; other files are inventoried by path.
-- The CLI does not import or execute the analyzed project, and it does not make network calls to model services.
-- AST output is used for code navigation. Module responsibilities and runtime relationships still require source reading and evidence checks.
-- Static analysis may not discover every dynamic import, reflective call, or configuration-driven relationship. The analysis records its actual coverage and limitations.
-- Playwright opens the local page and captures screenshots. Visual review is performed by the active Codex model; the Python package does not include Codex's vision model.
+## Further reading
 
-## Documentation and examples
-
-| Topic | Location |
-| --- | --- |
-| Skill entry point and full workflow | [SKILL.md](SKILL.md) |
-| A–D source-analysis rules | [references/analysis-stages.md](references/analysis-stages.md) |
-| Architecture layout contract | [docs/layout-contract-v2.md](docs/layout-contract-v2.md) |
-| Fan-in, fan-out, and relationship-matrix rules | [docs/edge-group-routing.md](docs/edge-group-routing.md) |
-| CLI options | `architecture-diagram --help` |
-| Sequence diagram sample data | [examples/sequence-demo.json](examples/sequence-demo.json) |
+[Skill guide](SKILL.md) · [Source-analysis workflow](references/analysis-stages.md) · [Layout rules](docs/layout-contract-v2.md) · [Relationship routing](docs/edge-group-routing.md) · [Sequence example](examples/sequence-demo.json)
 
 ## License
 
-There is currently no license file in this repository. Please do not assume that the project has been released under a particular open-source license until one is added.
+No license file is included yet, so the repository does not currently declare a specific open-source license.
