@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+tests/.pytest-tmp/
+build/
+dist/
+*.egg-info/
+outputs/**/browser-downloads/
+outputs/
+.pytest-installed*/
+.tmp/

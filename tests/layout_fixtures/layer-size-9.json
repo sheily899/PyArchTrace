@@ -1,0 +1,722 @@
+{
+  "caseId": "layer-size-9",
+  "diagram": {
+    "schemaVersion": 1,
+    "id": "layer-size-9",
+    "title": "布局压力样例",
+    "type": "architecture",
+    "direction": "TB",
+    "layers": [
+      {
+        "id": "L1",
+        "name": "接入层",
+        "desc": "承接本层主要职责",
+        "standardType": "access"
+      },
+      {
+        "id": "L2",
+        "name": "编排层",
+        "desc": "承接本层主要职责",
+        "standardType": "orchestration"
+      },
+      {
+        "id": "L3",
+        "name": "能力层",
+        "desc": "承接本层主要职责",
+        "standardType": "capability"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "n01",
+        "layer": "L1",
+        "title": "请求接收",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n02",
+        "layer": "L1",
+        "title": "会话管理",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n03",
+        "layer": "L1",
+        "title": "路由分发",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 2,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n04",
+        "layer": "L1",
+        "title": "任务协调",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 3,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n05",
+        "layer": "L1",
+        "title": "数据查询",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 4,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n06",
+        "layer": "L2",
+        "title": "结果整理",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n07",
+        "layer": "L2",
+        "title": "权限校验",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n08",
+        "layer": "L2",
+        "title": "配置加载",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 2,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n09",
+        "layer": "L2",
+        "title": "记录保存",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 3,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n10",
+        "layer": "L2",
+        "title": "状态更新",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 4,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n11",
+        "layer": "L2",
+        "title": "服务调用",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 5,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n12",
+        "layer": "L2",
+        "title": "输出处理",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 6,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n13",
+        "layer": "L2",
+        "title": "数据读取",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 7,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n14",
+        "layer": "L2",
+        "title": "任务创建",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 8,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n15",
+        "layer": "L3",
+        "title": "异常处理",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n16",
+        "layer": "L3",
+        "title": "日志记录",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n17",
+        "layer": "L3",
+        "title": "页面渲染",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 2,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n18",
+        "layer": "L3",
+        "title": "模型调用",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 3,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n19",
+        "layer": "L3",
+        "title": "插件管理",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 4,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/layer-size-9.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      }
+    ],
+    "edges": [],
+    "showEdgeLabels": false,
+    "layout": {
+      "contractVersion": 2
+    },
+    "template": "A",
+    "mainChain": [
+      "n01",
+      "n06",
+      "n15"
+    ],
+    "layerFlows": [
+      {
+        "id": "layer-flow-1",
+        "fromLayer": "L1",
+        "toLayer": "L2",
+        "label": "请求流转",
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "layer-flow-2",
+        "fromLayer": "L2",
+        "toLayer": "L3",
+        "label": "请求流转",
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/layer-size-9.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ]
+      }
+    ]
+  },
+  "target": {
+    "targetLayerSize": 9,
+    "expectedTemplate": "A",
+    "expectedOutcome": "valid"
+  }
+}

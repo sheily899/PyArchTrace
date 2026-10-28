@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "sequence-demo",
+  "title": "用户消息处理时序",
+  "type": "sequence",
+  "direction": "LR",
+  "layers": [],
+  "nodes": [
+    {"id": "user", "title": "用户", "desc": "提交咨询内容", "status": "implemented"},
+    {"id": "page", "title": "对话页面", "desc": "发送消息并展示回复", "status": "implemented"},
+    {"id": "gateway", "title": "消息接口", "desc": "接收请求并返回结果", "status": "implemented"},
+    {"id": "orchestrator", "title": "意图调度", "desc": "识别诉求并选择处理路径", "status": "implemented"},
+    {"id": "store", "title": "会话数据", "desc": "读取和保存上下文", "status": "implemented"}
+  ],
+  "edges": [
+    {"id": "s1", "from": "user", "to": "page", "label": "输入咨询", "kind": "message", "order": 1},
+    {"id": "s2", "from": "page", "to": "gateway", "label": "提交消息", "kind": "http", "order": 2},
+    {"id": "s3", "from": "gateway", "to": "orchestrator", "label": "请求识别与处理", "kind": "call", "order": 3},
+    {"id": "s4", "from": "orchestrator", "to": "store", "label": "读取会话上下文", "kind": "db_read", "order": 4},
+    {"id": "s5", "from": "store", "to": "orchestrator", "label": "返回上下文", "kind": "message", "order": 5},
+    {"id": "s6", "from": "orchestrator", "to": "gateway", "label": "生成处理结果", "kind": "message", "order": 6},
+    {"id": "s7", "from": "gateway", "to": "page", "label": "返回回复", "kind": "message", "order": 7},
+    {"id": "s8", "from": "page", "to": "user", "label": "展示回复", "kind": "message", "order": 8}
+  ]
+}

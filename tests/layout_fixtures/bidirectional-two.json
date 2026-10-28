@@ -1,0 +1,90 @@
+{
+  "caseId": "bidirectional-two",
+  "diagram": {
+    "schemaVersion": 1,
+    "id": "bidirectional-two",
+    "title": "双向调用",
+    "type": "flow",
+    "direction": "LR",
+    "layers": [
+      {
+        "id": "source",
+        "name": "调用方"
+      },
+      {
+        "id": "target",
+        "name": "目标能力"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "source-1",
+        "layer": "source",
+        "title": "前端页面",
+        "desc": "发起服务请求",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/bidirectional-two.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "target-1",
+        "layer": "target",
+        "title": "业务接口",
+        "desc": "返回查询结果",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/bidirectional-two.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "source-1",
+        "to": "target-1",
+        "label": "提交请求",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/bidirectional-two.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "e2",
+        "from": "target-1",
+        "to": "source-1",
+        "label": "返回结果",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/bidirectional-two.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      }
+    ],
+    "subDiagrams": []
+  },
+  "target": {
+    "routingPattern": "parallel_opposite_directions",
+    "kind": "合成分支路由基线",
+    "expectedOutcome": "valid"
+  }
+}

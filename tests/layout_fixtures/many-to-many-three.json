@@ -1,0 +1,255 @@
+{
+  "caseId": "many-to-many-three",
+  "diagram": {
+    "schemaVersion": 1,
+    "id": "many-to-many-three",
+    "title": "三对三关系网",
+    "type": "flow",
+    "direction": "LR",
+    "layers": [
+      {
+        "id": "source",
+        "name": "调用方"
+      },
+      {
+        "id": "target",
+        "name": "目标能力"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "source-1",
+        "layer": "source",
+        "title": "调用方1",
+        "desc": "提交处理请求",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/many-to-many-three.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "source-2",
+        "layer": "source",
+        "title": "调用方2",
+        "desc": "提交处理请求",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/many-to-many-three.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "source-3",
+        "layer": "source",
+        "title": "调用方3",
+        "desc": "提交处理请求",
+        "status": "implemented",
+        "order": 2,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/many-to-many-three.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "target-1",
+        "layer": "target",
+        "title": "处理模块1",
+        "desc": "返回处理结果",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/many-to-many-three.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "target-2",
+        "layer": "target",
+        "title": "处理模块2",
+        "desc": "返回处理结果",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/many-to-many-three.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "target-3",
+        "layer": "target",
+        "title": "处理模块3",
+        "desc": "返回处理结果",
+        "status": "implemented",
+        "order": 2,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/many-to-many-three.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "source-1",
+        "to": "target-1",
+        "label": "处理分支1",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/many-to-many-three.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "e2",
+        "from": "source-1",
+        "to": "target-2",
+        "label": "处理分支2",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/many-to-many-three.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "e3",
+        "from": "source-1",
+        "to": "target-3",
+        "label": "处理分支3",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/many-to-many-three.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "e4",
+        "from": "source-2",
+        "to": "target-1",
+        "label": "处理分支4",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/many-to-many-three.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "e5",
+        "from": "source-2",
+        "to": "target-2",
+        "label": "处理分支5",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/many-to-many-three.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "e6",
+        "from": "source-2",
+        "to": "target-3",
+        "label": "处理分支6",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/many-to-many-three.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "e7",
+        "from": "source-3",
+        "to": "target-1",
+        "label": "处理分支7",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/many-to-many-three.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "e8",
+        "from": "source-3",
+        "to": "target-2",
+        "label": "处理分支8",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/many-to-many-three.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "e9",
+        "from": "source-3",
+        "to": "target-3",
+        "label": "处理分支9",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/many-to-many-three.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      }
+    ],
+    "subDiagrams": []
+  },
+  "target": {
+    "routingPattern": "split_or_matrix",
+    "kind": "合成分支路由基线",
+    "expectedOutcome": "valid"
+  }
+}

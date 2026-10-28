@@ -1,0 +1,5 @@
+interface:
+  display_name: "Architecture Diagram"
+  short_description: "仅在明确请求时分析 Python 项目并生成中文架构图、时序图或链路图"
+  brand_color: "#2563EB"
+  default_prompt: "Use $architecture-diagram to analyze this Python project and create clear, editable architecture diagrams."

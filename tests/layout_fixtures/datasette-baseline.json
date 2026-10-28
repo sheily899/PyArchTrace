@@ -1,0 +1,5074 @@
+{
+  "caseId": "datasette-baseline",
+  "diagram": {
+    "schemaVersion": 1,
+    "id": "datasette-runtime",
+    "title": "数据发布与浏览平台运行时架构",
+    "type": "architecture",
+    "direction": "TB",
+    "layers": [
+      {
+        "id": "access",
+        "name": "接入层",
+        "desc": "用户与服务入口",
+        "standardType": "access"
+      },
+      {
+        "id": "orchestration",
+        "name": "编排层",
+        "desc": "运行调度与扩展",
+        "standardType": "orchestration"
+      },
+      {
+        "id": "capability",
+        "name": "能力层",
+        "desc": "数据浏览与操作",
+        "standardType": "capability"
+      },
+      {
+        "id": "data",
+        "name": "数据与外部依赖层",
+        "desc": "存储与配置来源",
+        "standardType": "data"
+      },
+      {
+        "id": "governance",
+        "name": "治理与可靠性",
+        "desc": "贯穿所有层",
+        "crossCutting": true,
+        "standardType": "governance"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "cli_entry",
+        "layer": "access",
+        "title": "命令行启动",
+        "desc": "读取文件并启动服务",
+        "status": "implemented",
+        "order": 0,
+        "column": 0,
+        "drilldown": "startup-data",
+        "evidence": [
+          {
+            "path": "datasette/cli.py",
+            "line": 661,
+            "endLine": 661,
+            "claim": "命令入口创建应用实例"
+          },
+          {
+            "path": "datasette/cli.py",
+            "line": 759,
+            "endLine": 759,
+            "claim": "将应用交给服务器运行"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/cli.py",
+            "datasette/cli.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "web_ui",
+        "layer": "access",
+        "title": "浏览器交互页面",
+        "desc": "呈现目录表格与查询",
+        "status": "implemented",
+        "order": 1,
+        "column": 1,
+        "drilldown": "request-routing",
+        "evidence": [
+          {
+            "path": "datasette/templates/index.html",
+            "line": 11,
+            "endLine": 22,
+            "claim": "首页模板呈现数据目录"
+          },
+          {
+            "path": "datasette/templates/query.html",
+            "line": 40,
+            "endLine": 40,
+            "claim": "查询页面提供查询表单"
+          },
+          {
+            "path": "datasette/templates/table.html",
+            "line": 59,
+            "endLine": 59,
+            "claim": "表格页面提交筛选请求"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/templates/index.html",
+            "datasette/templates/query.html",
+            "datasette/templates/table.html"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "asgi_app",
+        "layer": "access",
+        "title": "请求应用组装",
+        "desc": "组装中间件与请求入口",
+        "status": "implemented",
+        "order": 2,
+        "column": 3,
+        "drilldown": "request-routing",
+        "evidence": [
+          {
+            "path": "datasette/app.py",
+            "line": 3156,
+            "endLine": 3177,
+            "claim": "构建路由和中间件应用栈"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/app.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "request_router",
+        "layer": "access",
+        "title": "请求路径路由",
+        "desc": "匹配路径并定位视图",
+        "status": "implemented",
+        "order": 3,
+        "column": 2,
+        "drilldown": "request-routing",
+        "evidence": [
+          {
+            "path": "datasette/app.py",
+            "line": 3180,
+            "endLine": 3215,
+            "claim": "路由器解析请求路径并匹配视图"
+          },
+          {
+            "path": "datasette/app.py",
+            "line": 3278,
+            "endLine": 3290,
+            "claim": "路由期间解析请求身份"
+          },
+          {
+            "path": "datasette/app.py",
+            "line": 3312,
+            "endLine": 3312,
+            "claim": "路由器调用匹配视图"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/app.py",
+            "datasette/app.py",
+            "datasette/app.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "runtime_core",
+        "layer": "orchestration",
+        "title": "应用运行时",
+        "desc": "装配配置与生命周期",
+        "status": "implemented",
+        "order": 0,
+        "column": 0,
+        "drilldown": "startup-extensions",
+        "evidence": [
+          {
+            "path": "datasette/app.py",
+            "line": 404,
+            "endLine": 410,
+            "claim": "应用运行时对象定义与初始化入口"
+          },
+          {
+            "path": "datasette/app.py",
+            "line": 464,
+            "endLine": 500,
+            "claim": "初始化数据库目录和内部数据库"
+          },
+          {
+            "path": "datasette/app.py",
+            "line": 3156,
+            "endLine": 3177,
+            "claim": "装配并返回服务应用"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/app.py",
+            "datasette/app.py",
+            "datasette/app.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "plugin_registry",
+        "layer": "orchestration",
+        "title": "插件扩展管理",
+        "desc": "注册扩展路由与格式",
+        "status": "implemented",
+        "order": 1,
+        "column": 1,
+        "drilldown": "startup-extensions",
+        "evidence": [
+          {
+            "path": "datasette/plugins.py",
+            "line": 36,
+            "endLine": 37,
+            "claim": "创建插件管理器与钩子规范"
+          },
+          {
+            "path": "datasette/plugins.py",
+            "line": 64,
+            "endLine": 89,
+            "claim": "加载入口插件并注册"
+          },
+          {
+            "path": "datasette/app.py",
+            "line": 2737,
+            "endLine": 2739,
+            "claim": "收集插件提供的路由"
+          },
+          {
+            "path": "datasette/app.py",
+            "line": 2549,
+            "endLine": 2556,
+            "claim": "收集并注册输出渲染器"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/plugins.py",
+            "datasette/plugins.py",
+            "datasette/app.py",
+            "datasette/app.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "view_dispatch",
+        "layer": "orchestration",
+        "title": "页面请求调度",
+        "desc": "按请求方法调用页面",
+        "status": "implemented",
+        "order": 2,
+        "column": 2,
+        "drilldown": "sql-query",
+        "evidence": [
+          {
+            "path": "datasette/views/base.py",
+            "line": 117,
+            "endLine": 124,
+            "claim": "视图按请求方法选择处理器并调用"
+          },
+          {
+            "path": "datasette/views/base.py",
+            "line": 165,
+            "endLine": 175,
+            "claim": "将视图类包装为路由处理函数"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/views/base.py",
+            "datasette/views/base.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "database_registry",
+        "layer": "orchestration",
+        "title": "数据库目录管理",
+        "desc": "登记数据库并解析路由",
+        "status": "implemented",
+        "order": 3,
+        "column": 3,
+        "drilldown": "startup-data",
+        "evidence": [
+          {
+            "path": "datasette/app.py",
+            "line": 485,
+            "endLine": 492,
+            "claim": "逐个创建并登记用户数据库"
+          },
+          {
+            "path": "datasette/app.py",
+            "line": 933,
+            "endLine": 960,
+            "claim": "按名称或路由读取并登记数据库"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/app.py",
+            "datasette/app.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "background_tasks",
+        "layer": "orchestration",
+        "title": "后台任务管理",
+        "desc": "启动并收敛后台任务",
+        "status": "implemented",
+        "order": 4,
+        "column": 4,
+        "drilldown": "startup-extensions",
+        "evidence": [
+          {
+            "path": "datasette/app.py",
+            "line": 3118,
+            "endLine": 3127,
+            "claim": "应用触发后台任务启动"
+          },
+          {
+            "path": "datasette/background_tasks.py",
+            "line": 151,
+            "endLine": 160,
+            "claim": "监督器创建并启动异步任务"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/app.py",
+            "datasette/background_tasks.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "catalog_views",
+        "layer": "capability",
+        "title": "数据目录浏览",
+        "desc": "展示实例与数据库目录",
+        "status": "implemented",
+        "order": 0,
+        "column": 0,
+        "drilldown": "row-and-catalog",
+        "evidence": [
+          {
+            "path": "datasette/views/index.py",
+            "line": 23,
+            "endLine": 34,
+            "claim": "首页校验权限并获取可见数据库"
+          },
+          {
+            "path": "datasette/views/index.py",
+            "line": 157,
+            "endLine": 180,
+            "claim": "响应中返回目录及实例元数据"
+          },
+          {
+            "path": "datasette/views/database.py",
+            "line": 79,
+            "endLine": 82,
+            "claim": "定义数据库页面视图"
+          },
+          {
+            "path": "datasette/views/database.py",
+            "line": 549,
+            "endLine": 549,
+            "claim": "数据库视图解析目标数据库"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/views/index.py",
+            "datasette/views/index.py",
+            "datasette/views/database.py",
+            "datasette/views/database.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "sql_api",
+        "layer": "capability",
+        "title": "查询执行接口",
+        "desc": "执行查询并返回结果",
+        "status": "implemented",
+        "order": 1,
+        "column": 2,
+        "drilldown": "sql-query",
+        "evidence": [
+          {
+            "path": "datasette/views/database.py",
+            "line": 579,
+            "endLine": 605,
+            "claim": "处理查询请求并校验查询权限"
+          },
+          {
+            "path": "datasette/views/database.py",
+            "line": 711,
+            "endLine": 720,
+            "claim": "查询入口解析数据库并检查可见资源"
+          },
+          {
+            "path": "datasette/views/database.py",
+            "line": 863,
+            "endLine": 869,
+            "claim": "查询执行并生成流式表格数据"
+          },
+          {
+            "path": "datasette/views/database.py",
+            "line": 893,
+            "endLine": 905,
+            "claim": "根据格式选择输出渲染器"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/views/database.py",
+            "datasette/views/database.py",
+            "datasette/views/database.py",
+            "datasette/views/database.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "table_browse",
+        "layer": "capability",
+        "title": "数据表浏览",
+        "desc": "筛选排序并分页展示",
+        "status": "implemented",
+        "order": 2,
+        "column": 1,
+        "drilldown": "table-filters",
+        "evidence": [
+          {
+            "path": "datasette/views/table.py",
+            "line": 1740,
+            "endLine": 1744,
+            "claim": "表格页面入口刷新结构并处理请求"
+          },
+          {
+            "path": "datasette/views/table.py",
+            "line": 1995,
+            "endLine": 2015,
+            "claim": "从请求生成过滤条件并运行过滤钩子"
+          },
+          {
+            "path": "datasette/views/table.py",
+            "line": 2253,
+            "endLine": 2259,
+            "claim": "执行表格查询并组织列和行"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/views/table.py",
+            "datasette/views/table.py",
+            "datasette/views/table.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "row_ops",
+        "layer": "capability",
+        "title": "单条记录维护",
+        "desc": "读取或修改单条记录",
+        "status": "implemented",
+        "order": 3,
+        "column": 3,
+        "drilldown": "row-and-catalog",
+        "evidence": [
+          {
+            "path": "datasette/views/row.py",
+            "line": 148,
+            "endLine": 150,
+            "claim": "定义单条记录视图"
+          },
+          {
+            "path": "datasette/views/row.py",
+            "line": 786,
+            "endLine": 805,
+            "claim": "删除视图校验后写入数据库"
+          },
+          {
+            "path": "datasette/views/row.py",
+            "line": 831,
+            "endLine": 890,
+            "claim": "更新视图执行记录写入"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/views/row.py",
+            "datasette/views/row.py",
+            "datasette/views/row.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "result_rendering",
+        "layer": "capability",
+        "title": "结果格式输出",
+        "desc": "输出网页与数据格式",
+        "status": "implemented",
+        "order": 4,
+        "column": 4,
+        "drilldown": "sql-query",
+        "evidence": [
+          {
+            "path": "datasette/renderer.py",
+            "line": 33,
+            "endLine": 43,
+            "claim": "定义 JSON 结果编码器"
+          },
+          {
+            "path": "datasette/app.py",
+            "line": 2541,
+            "endLine": 2556,
+            "claim": "注册内置及插件输出渲染器"
+          },
+          {
+            "path": "datasette/views/database.py",
+            "line": 893,
+            "endLine": 905,
+            "claim": "查询接口调用匹配的结果渲染器"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/renderer.py",
+            "datasette/app.py",
+            "datasette/views/database.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "user_db",
+        "layer": "data",
+        "title": "用户数据数据库",
+        "desc": "连接并读写用户数据库",
+        "status": "implemented",
+        "order": 0,
+        "column": 2,
+        "drilldown": "table-filters",
+        "evidence": [
+          {
+            "path": "datasette/database.py",
+            "line": 176,
+            "endLine": 213,
+            "claim": "创建文件或内存 SQLite 连接"
+          },
+          {
+            "path": "datasette/database.py",
+            "line": 717,
+            "endLine": 748,
+            "claim": "在线程中执行数据库查询"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/database.py",
+            "datasette/database.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "internal_db",
+        "layer": "data",
+        "title": "内部目录数据库",
+        "desc": "保存目录权限与查询",
+        "status": "implemented",
+        "order": 1,
+        "column": 0,
+        "drilldown": "saved-query",
+        "evidence": [
+          {
+            "path": "datasette/utils/internal_db.py",
+            "line": 27,
+            "endLine": 48,
+            "claim": "定义内部数据库目录表"
+          },
+          {
+            "path": "datasette/utils/internal_db.py",
+            "line": 92,
+            "endLine": 114,
+            "claim": "定义元数据和查询相关表"
+          },
+          {
+            "path": "datasette/utils/internal_db.py",
+            "line": 176,
+            "endLine": 187,
+            "claim": "初始化内部库并读取用户库结构"
+          },
+          {
+            "path": "datasette/stored_queries.py",
+            "line": 93,
+            "endLine": 93,
+            "claim": "已保存查询写入内部数据库"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/utils/internal_db.py",
+            "datasette/utils/internal_db.py",
+            "datasette/utils/internal_db.py",
+            "datasette/stored_queries.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "runtime_config",
+        "layer": "data",
+        "title": "运行配置文件",
+        "desc": "读取服务运行参数",
+        "status": "implemented",
+        "order": 2,
+        "column": 1,
+        "drilldown": "startup-data",
+        "evidence": [
+          {
+            "path": "datasette/app.py",
+            "line": 512,
+            "endLine": 523,
+            "claim": "发现并解析运行配置文件"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/app.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "page_metadata",
+        "layer": "data",
+        "title": "页面元数据文件",
+        "desc": "读取页面标题与说明",
+        "status": "implemented",
+        "order": 3,
+        "column": 3,
+        "drilldown": "startup-data",
+        "evidence": [
+          {
+            "path": "datasette/app.py",
+            "line": 507,
+            "endLine": 519,
+            "claim": "发现并解析页面元数据文件"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/app.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "permission_engine",
+        "layer": "governance",
+        "title": "资源权限策略",
+        "desc": "按资源规则判断访问",
+        "status": "implemented",
+        "order": 0,
+        "column": 0,
+        "drilldown": "sql-query",
+        "evidence": [
+          {
+            "path": "datasette/app.py",
+            "line": 2055,
+            "endLine": 2084,
+            "claim": "按动作、资源和身份返回授权结果"
+          },
+          {
+            "path": "datasette/views/database.py",
+            "line": 600,
+            "endLine": 605,
+            "claim": "查询视图在执行前检查访问权限"
+          },
+          {
+            "path": "datasette/app.py",
+            "line": 2004,
+            "endLine": 2006,
+            "claim": "资源授权查询读取内部数据库"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/app.py",
+            "datasette/views/database.py",
+            "datasette/app.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "actor_auth",
+        "layer": "governance",
+        "title": "请求身份认证",
+        "desc": "解析请求身份与令牌",
+        "status": "implemented",
+        "order": 1,
+        "column": 1,
+        "drilldown": "request-routing",
+        "evidence": [
+          {
+            "path": "datasette/app.py",
+            "line": 3274,
+            "endLine": 3295,
+            "claim": "请求路由期间调用身份解析钩子"
+          },
+          {
+            "path": "datasette/actor_auth_cookie.py",
+            "line": 9,
+            "endLine": 24,
+            "claim": "验证并解码身份 Cookie"
+          },
+          {
+            "path": "datasette/default_permissions/tokens.py",
+            "line": 25,
+            "endLine": 38,
+            "claim": "解析签名令牌身份"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/app.py",
+            "datasette/actor_auth_cookie.py",
+            "datasette/default_permissions/tokens.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "csrf_guard",
+        "layer": "governance",
+        "title": "跨站请求防护",
+        "desc": "拦截跨站写入请求",
+        "status": "implemented",
+        "order": 2,
+        "column": 2,
+        "drilldown": "request-routing",
+        "evidence": [
+          {
+            "path": "datasette/csrf.py",
+            "line": 67,
+            "endLine": 87,
+            "claim": "定义跨站请求防护中间件"
+          },
+          {
+            "path": "datasette/csrf.py",
+            "line": 90,
+            "endLine": 134,
+            "claim": "根据请求方法和来源决定放行或拦截"
+          },
+          {
+            "path": "datasette/app.py",
+            "line": 3160,
+            "endLine": 3160,
+            "claim": "将跨站防护包装进应用栈"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/csrf.py",
+            "datasette/csrf.py",
+            "datasette/app.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "telemetry",
+        "layer": "governance",
+        "title": "请求链路观测",
+        "desc": "记录请求与数据库耗时",
+        "status": "implemented",
+        "order": 3,
+        "column": 3,
+        "drilldown": "startup-extensions",
+        "evidence": [
+          {
+            "path": "datasette/telemetry.py",
+            "line": 214,
+            "endLine": 244,
+            "claim": "中间件为请求建立服务器跨度并采集属性"
+          },
+          {
+            "path": "datasette/app.py",
+            "line": 3174,
+            "endLine": 3177,
+            "claim": "将请求观测中间件放到最外层"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "datasette/telemetry.py",
+            "datasette/app.py"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      }
+    ],
+    "edges": [],
+    "subDiagrams": [
+      {
+        "schemaVersion": 1,
+        "id": "startup-data",
+        "title": "启动与数据装配",
+        "type": "flow",
+        "direction": "LR",
+        "layers": [
+          {
+            "id": "step-0",
+            "name": "第1步"
+          },
+          {
+            "id": "step-1",
+            "name": "第2步"
+          },
+          {
+            "id": "step-2",
+            "name": "第3步"
+          },
+          {
+            "id": "step-3",
+            "name": "第4步"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "cli_entry",
+            "layer": "step-0",
+            "title": "命令行启动",
+            "desc": "读取文件并启动服务",
+            "status": "implemented",
+            "order": 0,
+            "evidence": [
+              {
+                "path": "datasette/cli.py",
+                "line": 661,
+                "endLine": 661,
+                "claim": "命令入口创建应用实例"
+              },
+              {
+                "path": "datasette/cli.py",
+                "line": 759,
+                "endLine": 759,
+                "claim": "将应用交给服务器运行"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/cli.py",
+                "datasette/cli.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "runtime_core",
+            "layer": "step-1",
+            "title": "应用运行时",
+            "desc": "装配配置与生命周期",
+            "status": "implemented",
+            "order": 1,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 404,
+                "endLine": 410,
+                "claim": "应用运行时对象定义与初始化入口"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 464,
+                "endLine": 500,
+                "claim": "初始化数据库目录和内部数据库"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 3156,
+                "endLine": 3177,
+                "claim": "装配并返回服务应用"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py",
+                "datasette/app.py",
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "runtime_config",
+            "layer": "step-2",
+            "title": "运行配置文件",
+            "desc": "读取服务运行参数",
+            "status": "implemented",
+            "order": 2,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 512,
+                "endLine": 523,
+                "claim": "发现并解析运行配置文件"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "page_metadata",
+            "layer": "step-2",
+            "title": "页面元数据文件",
+            "desc": "读取页面标题与说明",
+            "status": "implemented",
+            "order": 3,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 507,
+                "endLine": 519,
+                "claim": "发现并解析页面元数据文件"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "database_registry",
+            "layer": "step-2",
+            "title": "数据库目录管理",
+            "desc": "登记数据库并解析路由",
+            "status": "implemented",
+            "order": 4,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 485,
+                "endLine": 492,
+                "claim": "逐个创建并登记用户数据库"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 933,
+                "endLine": 960,
+                "claim": "按名称或路由读取并登记数据库"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py",
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "internal_db",
+            "layer": "step-2",
+            "title": "内部目录数据库",
+            "desc": "保存目录权限与查询",
+            "status": "implemented",
+            "order": 5,
+            "evidence": [
+              {
+                "path": "datasette/utils/internal_db.py",
+                "line": 27,
+                "endLine": 48,
+                "claim": "定义内部数据库目录表"
+              },
+              {
+                "path": "datasette/utils/internal_db.py",
+                "line": 92,
+                "endLine": 114,
+                "claim": "定义元数据和查询相关表"
+              },
+              {
+                "path": "datasette/utils/internal_db.py",
+                "line": 176,
+                "endLine": 187,
+                "claim": "初始化内部库并读取用户库结构"
+              },
+              {
+                "path": "datasette/stored_queries.py",
+                "line": 93,
+                "endLine": 93,
+                "claim": "已保存查询写入内部数据库"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/utils/internal_db.py",
+                "datasette/utils/internal_db.py",
+                "datasette/utils/internal_db.py",
+                "datasette/stored_queries.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "user_db",
+            "layer": "step-3",
+            "title": "用户数据数据库",
+            "desc": "连接并读写用户数据库",
+            "status": "implemented",
+            "order": 6,
+            "evidence": [
+              {
+                "path": "datasette/database.py",
+                "line": 176,
+                "endLine": 213,
+                "claim": "创建文件或内存 SQLite 连接"
+              },
+              {
+                "path": "datasette/database.py",
+                "line": 717,
+                "endLine": 748,
+                "claim": "在线程中执行数据库查询"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/database.py",
+                "datasette/database.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "asgi_app",
+            "layer": "step-2",
+            "title": "请求应用组装",
+            "desc": "组装中间件与请求入口",
+            "status": "implemented",
+            "order": 7,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 3156,
+                "endLine": 3177,
+                "claim": "构建路由和中间件应用栈"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "r01",
+            "from": "cli_entry",
+            "to": "runtime_core",
+            "label": "创建应用实例",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 0,
+            "relationIds": [
+              "r01"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/cli.py",
+                "line": 661,
+                "endLine": 661,
+                "claim": "命令入口创建应用实例"
+              }
+            ]
+          },
+          {
+            "id": "r02",
+            "from": "cli_entry",
+            "to": "asgi_app",
+            "label": "交给服务运行",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 1,
+            "relationIds": [
+              "r02"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/cli.py",
+                "line": 759,
+                "endLine": 759,
+                "claim": "服务器配置调用应用实例的应用工厂"
+              }
+            ]
+          },
+          {
+            "id": "r03",
+            "from": "runtime_core",
+            "to": "runtime_config",
+            "label": "读取运行参数",
+            "kind": "other",
+            "main": false,
+            "async": false,
+            "order": 2,
+            "relationIds": [
+              "r03"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 512,
+                "endLine": 523,
+                "claim": "读取并解析运行配置文件"
+              }
+            ]
+          },
+          {
+            "id": "r04",
+            "from": "runtime_core",
+            "to": "page_metadata",
+            "label": "读取页面元数据",
+            "kind": "other",
+            "main": false,
+            "async": false,
+            "order": 3,
+            "relationIds": [
+              "r04"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 507,
+                "endLine": 519,
+                "claim": "读取并解析页面元数据文件"
+              }
+            ]
+          },
+          {
+            "id": "r05",
+            "from": "runtime_core",
+            "to": "database_registry",
+            "label": "登记数据库",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 4,
+            "relationIds": [
+              "r05"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 485,
+                "endLine": 492,
+                "claim": "为输入文件创建数据库并登记"
+              }
+            ]
+          },
+          {
+            "id": "r06",
+            "from": "runtime_core",
+            "to": "internal_db",
+            "label": "初始化内部目录",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 5,
+            "relationIds": [
+              "r06"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 728,
+                "endLine": 733,
+                "claim": "获取并初始化内部数据库"
+              }
+            ]
+          },
+          {
+            "id": "r09",
+            "from": "runtime_core",
+            "to": "asgi_app",
+            "label": "组装请求应用",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 6,
+            "relationIds": [
+              "r09"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 3156,
+                "endLine": 3177,
+                "claim": "应用实例构建并返回中间件与路由栈"
+              }
+            ]
+          },
+          {
+            "id": "r22",
+            "from": "database_registry",
+            "to": "user_db",
+            "label": "登记数据库实例",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 7,
+            "relationIds": [
+              "r22"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 489,
+                "endLine": 492,
+                "claim": "为每个输入文件创建数据库实例并登记"
+              }
+            ]
+          }
+        ],
+        "showEdgeLabels": true,
+        "layout": {
+          "gapX": 24,
+          "gapY": 24,
+          "fixtureExpectedTemplate": "A"
+        },
+        "subDiagrams": []
+      },
+      {
+        "schemaVersion": 1,
+        "id": "startup-extensions",
+        "title": "插件与后台任务",
+        "type": "flow",
+        "direction": "LR",
+        "layers": [
+          {
+            "id": "step-0",
+            "name": "第1步"
+          },
+          {
+            "id": "step-1",
+            "name": "第2步"
+          },
+          {
+            "id": "step-2",
+            "name": "第3步"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "runtime_core",
+            "layer": "step-0",
+            "title": "应用运行时",
+            "desc": "装配配置与生命周期",
+            "status": "implemented",
+            "order": 0,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 404,
+                "endLine": 410,
+                "claim": "应用运行时对象定义与初始化入口"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 464,
+                "endLine": 500,
+                "claim": "初始化数据库目录和内部数据库"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 3156,
+                "endLine": 3177,
+                "claim": "装配并返回服务应用"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py",
+                "datasette/app.py",
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "plugin_registry",
+            "layer": "step-1",
+            "title": "插件扩展管理",
+            "desc": "注册扩展路由与格式",
+            "status": "implemented",
+            "order": 1,
+            "evidence": [
+              {
+                "path": "datasette/plugins.py",
+                "line": 36,
+                "endLine": 37,
+                "claim": "创建插件管理器与钩子规范"
+              },
+              {
+                "path": "datasette/plugins.py",
+                "line": 64,
+                "endLine": 89,
+                "claim": "加载入口插件并注册"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 2737,
+                "endLine": 2739,
+                "claim": "收集插件提供的路由"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 2549,
+                "endLine": 2556,
+                "claim": "收集并注册输出渲染器"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/plugins.py",
+                "datasette/plugins.py",
+                "datasette/app.py",
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "background_tasks",
+            "layer": "step-1",
+            "title": "后台任务管理",
+            "desc": "启动并收敛后台任务",
+            "status": "implemented",
+            "order": 2,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 3118,
+                "endLine": 3127,
+                "claim": "应用触发后台任务启动"
+              },
+              {
+                "path": "datasette/background_tasks.py",
+                "line": 151,
+                "endLine": 160,
+                "claim": "监督器创建并启动异步任务"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py",
+                "datasette/background_tasks.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "asgi_app",
+            "layer": "step-1",
+            "title": "请求应用组装",
+            "desc": "组装中间件与请求入口",
+            "status": "implemented",
+            "order": 3,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 3156,
+                "endLine": 3177,
+                "claim": "构建路由和中间件应用栈"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "request_router",
+            "layer": "step-2",
+            "title": "请求路径路由",
+            "desc": "匹配路径并定位视图",
+            "status": "implemented",
+            "order": 4,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 3180,
+                "endLine": 3215,
+                "claim": "路由器解析请求路径并匹配视图"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 3278,
+                "endLine": 3290,
+                "claim": "路由期间解析请求身份"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 3312,
+                "endLine": 3312,
+                "claim": "路由器调用匹配视图"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py",
+                "datasette/app.py",
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "result_rendering",
+            "layer": "step-2",
+            "title": "结果格式输出",
+            "desc": "输出网页与数据格式",
+            "status": "implemented",
+            "order": 5,
+            "evidence": [
+              {
+                "path": "datasette/renderer.py",
+                "line": 33,
+                "endLine": 43,
+                "claim": "定义 JSON 结果编码器"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 2541,
+                "endLine": 2556,
+                "claim": "注册内置及插件输出渲染器"
+              },
+              {
+                "path": "datasette/views/database.py",
+                "line": 893,
+                "endLine": 905,
+                "claim": "查询接口调用匹配的结果渲染器"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/renderer.py",
+                "datasette/app.py",
+                "datasette/views/database.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "telemetry",
+            "layer": "step-2",
+            "title": "请求链路观测",
+            "desc": "记录请求与数据库耗时",
+            "status": "implemented",
+            "order": 6,
+            "evidence": [
+              {
+                "path": "datasette/telemetry.py",
+                "line": 214,
+                "endLine": 244,
+                "claim": "中间件为请求建立服务器跨度并采集属性"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 3174,
+                "endLine": 3177,
+                "claim": "将请求观测中间件放到最外层"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/telemetry.py",
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "r07",
+            "from": "runtime_core",
+            "to": "plugin_registry",
+            "label": "加载并注册插件",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 0,
+            "relationIds": [
+              "r07"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 603,
+                "endLine": 609,
+                "claim": "从插件目录加载模块并注册到插件管理器"
+              }
+            ]
+          },
+          {
+            "id": "r08",
+            "from": "runtime_core",
+            "to": "background_tasks",
+            "label": "启动后台任务",
+            "kind": "spawn_task",
+            "main": false,
+            "async": true,
+            "order": 1,
+            "relationIds": [
+              "r08"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 3118,
+                "endLine": 3127,
+                "claim": "应用生命周期触发后台任务启动"
+              },
+              {
+                "path": "datasette/background_tasks.py",
+                "line": 151,
+                "endLine": 157,
+                "claim": "监督器创建异步任务"
+              }
+            ]
+          },
+          {
+            "id": "r09",
+            "from": "runtime_core",
+            "to": "asgi_app",
+            "label": "组装请求应用",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 2,
+            "relationIds": [
+              "r09"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 3156,
+                "endLine": 3177,
+                "claim": "应用实例构建并返回中间件与路由栈"
+              }
+            ]
+          },
+          {
+            "id": "r33",
+            "from": "plugin_registry",
+            "to": "request_router",
+            "label": "加入扩展路由",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 3,
+            "relationIds": [
+              "r33"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 2737,
+                "endLine": 2739,
+                "claim": "路由组装阶段收集并包装插件路由"
+              }
+            ]
+          },
+          {
+            "id": "r34",
+            "from": "plugin_registry",
+            "to": "result_rendering",
+            "label": "注册扩展格式",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 4,
+            "relationIds": [
+              "r34"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 2549,
+                "endLine": 2556,
+                "claim": "收集插件渲染器并登记输出格式"
+              }
+            ]
+          },
+          {
+            "id": "r35",
+            "from": "asgi_app",
+            "to": "telemetry",
+            "label": "包装请求观测",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 5,
+            "relationIds": [
+              "r35"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 3174,
+                "endLine": 3177,
+                "claim": "将请求观测中间件包装到应用最外层"
+              }
+            ]
+          }
+        ],
+        "showEdgeLabels": true,
+        "layout": {
+          "gapX": 24,
+          "gapY": 24,
+          "fixtureExpectedTemplate": "A"
+        },
+        "subDiagrams": []
+      },
+      {
+        "schemaVersion": 1,
+        "id": "request-routing",
+        "title": "请求接入与身份识别",
+        "type": "flow",
+        "direction": "LR",
+        "layers": [
+          {
+            "id": "step-0",
+            "name": "第1步"
+          },
+          {
+            "id": "step-1",
+            "name": "第2步"
+          },
+          {
+            "id": "step-2",
+            "name": "第3步"
+          },
+          {
+            "id": "step-3",
+            "name": "第4步"
+          },
+          {
+            "id": "step-4",
+            "name": "第5步"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "web_ui",
+            "layer": "step-0",
+            "title": "浏览器交互页面",
+            "desc": "呈现目录表格与查询",
+            "status": "implemented",
+            "order": 0,
+            "evidence": [
+              {
+                "path": "datasette/templates/index.html",
+                "line": 11,
+                "endLine": 22,
+                "claim": "首页模板呈现数据目录"
+              },
+              {
+                "path": "datasette/templates/query.html",
+                "line": 40,
+                "endLine": 40,
+                "claim": "查询页面提供查询表单"
+              },
+              {
+                "path": "datasette/templates/table.html",
+                "line": 59,
+                "endLine": 59,
+                "claim": "表格页面提交筛选请求"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/templates/index.html",
+                "datasette/templates/query.html",
+                "datasette/templates/table.html"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "asgi_app",
+            "layer": "step-1",
+            "title": "请求应用组装",
+            "desc": "组装中间件与请求入口",
+            "status": "implemented",
+            "order": 1,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 3156,
+                "endLine": 3177,
+                "claim": "构建路由和中间件应用栈"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "csrf_guard",
+            "layer": "step-2",
+            "title": "跨站请求防护",
+            "desc": "拦截跨站写入请求",
+            "status": "implemented",
+            "order": 2,
+            "evidence": [
+              {
+                "path": "datasette/csrf.py",
+                "line": 67,
+                "endLine": 87,
+                "claim": "定义跨站请求防护中间件"
+              },
+              {
+                "path": "datasette/csrf.py",
+                "line": 90,
+                "endLine": 134,
+                "claim": "根据请求方法和来源决定放行或拦截"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 3160,
+                "endLine": 3160,
+                "claim": "将跨站防护包装进应用栈"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/csrf.py",
+                "datasette/csrf.py",
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "request_router",
+            "layer": "step-3",
+            "title": "请求路径路由",
+            "desc": "匹配路径并定位视图",
+            "status": "implemented",
+            "order": 3,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 3180,
+                "endLine": 3215,
+                "claim": "路由器解析请求路径并匹配视图"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 3278,
+                "endLine": 3290,
+                "claim": "路由期间解析请求身份"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 3312,
+                "endLine": 3312,
+                "claim": "路由器调用匹配视图"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py",
+                "datasette/app.py",
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "actor_auth",
+            "layer": "step-4",
+            "title": "请求身份认证",
+            "desc": "解析请求身份与令牌",
+            "status": "implemented",
+            "order": 4,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 3274,
+                "endLine": 3295,
+                "claim": "请求路由期间调用身份解析钩子"
+              },
+              {
+                "path": "datasette/actor_auth_cookie.py",
+                "line": 9,
+                "endLine": 24,
+                "claim": "验证并解码身份 Cookie"
+              },
+              {
+                "path": "datasette/default_permissions/tokens.py",
+                "line": 25,
+                "endLine": 38,
+                "claim": "解析签名令牌身份"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py",
+                "datasette/actor_auth_cookie.py",
+                "datasette/default_permissions/tokens.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "view_dispatch",
+            "layer": "step-4",
+            "title": "页面请求调度",
+            "desc": "按请求方法调用页面",
+            "status": "implemented",
+            "order": 5,
+            "evidence": [
+              {
+                "path": "datasette/views/base.py",
+                "line": 117,
+                "endLine": 124,
+                "claim": "视图按请求方法选择处理器并调用"
+              },
+              {
+                "path": "datasette/views/base.py",
+                "line": 165,
+                "endLine": 175,
+                "claim": "将视图类包装为路由处理函数"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/views/base.py",
+                "datasette/views/base.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "r10",
+            "from": "web_ui",
+            "to": "asgi_app",
+            "label": "提交页面请求",
+            "kind": "http",
+            "main": false,
+            "async": false,
+            "order": 0,
+            "relationIds": [
+              "r10"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/templates/query.html",
+                "line": 40,
+                "endLine": 40,
+                "claim": "查询页面通过表单提交请求"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 2938,
+                "endLine": 2941,
+                "claim": "服务器注册查询接口路由"
+              }
+            ]
+          },
+          {
+            "id": "r11",
+            "from": "asgi_app",
+            "to": "csrf_guard",
+            "label": "接入跨站防护",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 1,
+            "relationIds": [
+              "r11"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 3160,
+                "endLine": 3160,
+                "claim": "ASGI 应用包装请求路由与跨站防护中间件"
+              }
+            ]
+          },
+          {
+            "id": "r12",
+            "from": "csrf_guard",
+            "to": "request_router",
+            "label": "校验后转发",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 2,
+            "relationIds": [
+              "r12"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/csrf.py",
+                "line": 90,
+                "endLine": 94,
+                "claim": "通过来源检查后将请求转发给下游应用"
+              },
+              {
+                "path": "datasette/csrf.py",
+                "line": 121,
+                "endLine": 130,
+                "claim": "同源请求继续转发，异源请求被拒绝"
+              }
+            ]
+          },
+          {
+            "id": "r13",
+            "from": "request_router",
+            "to": "actor_auth",
+            "label": "解析请求身份",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 3,
+            "relationIds": [
+              "r13"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 3274,
+                "endLine": 3295,
+                "claim": "路由过程调用身份解析钩子并写入请求上下文"
+              }
+            ]
+          },
+          {
+            "id": "r14",
+            "from": "request_router",
+            "to": "view_dispatch",
+            "label": "调用匹配视图",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 4,
+            "relationIds": [
+              "r14"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 3312,
+                "endLine": 3312,
+                "claim": "路由器调用路径匹配到的视图"
+              },
+              {
+                "path": "datasette/views/base.py",
+                "line": 165,
+                "endLine": 175,
+                "claim": "视图包装函数进入方法调度"
+              }
+            ]
+          }
+        ],
+        "showEdgeLabels": true,
+        "layout": {
+          "gapX": 24,
+          "gapY": 24,
+          "fixtureExpectedTemplate": "A"
+        },
+        "subDiagrams": []
+      },
+      {
+        "schemaVersion": 1,
+        "id": "sql-query",
+        "title": "查询执行与结果输出",
+        "type": "flow",
+        "direction": "LR",
+        "layers": [
+          {
+            "id": "step-0",
+            "name": "第1步"
+          },
+          {
+            "id": "step-1",
+            "name": "第2步"
+          },
+          {
+            "id": "step-2",
+            "name": "第3步"
+          },
+          {
+            "id": "step-3",
+            "name": "第4步"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "view_dispatch",
+            "layer": "step-0",
+            "title": "页面请求调度",
+            "desc": "按请求方法调用页面",
+            "status": "implemented",
+            "order": 0,
+            "evidence": [
+              {
+                "path": "datasette/views/base.py",
+                "line": 117,
+                "endLine": 124,
+                "claim": "视图按请求方法选择处理器并调用"
+              },
+              {
+                "path": "datasette/views/base.py",
+                "line": 165,
+                "endLine": 175,
+                "claim": "将视图类包装为路由处理函数"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/views/base.py",
+                "datasette/views/base.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "sql_api",
+            "layer": "step-1",
+            "title": "查询执行接口",
+            "desc": "执行查询并返回结果",
+            "status": "implemented",
+            "order": 1,
+            "evidence": [
+              {
+                "path": "datasette/views/database.py",
+                "line": 579,
+                "endLine": 605,
+                "claim": "处理查询请求并校验查询权限"
+              },
+              {
+                "path": "datasette/views/database.py",
+                "line": 711,
+                "endLine": 720,
+                "claim": "查询入口解析数据库并检查可见资源"
+              },
+              {
+                "path": "datasette/views/database.py",
+                "line": 863,
+                "endLine": 869,
+                "claim": "查询执行并生成流式表格数据"
+              },
+              {
+                "path": "datasette/views/database.py",
+                "line": 893,
+                "endLine": 905,
+                "claim": "根据格式选择输出渲染器"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/views/database.py",
+                "datasette/views/database.py",
+                "datasette/views/database.py",
+                "datasette/views/database.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "permission_engine",
+            "layer": "step-2",
+            "title": "资源权限策略",
+            "desc": "按资源规则判断访问",
+            "status": "implemented",
+            "order": 2,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 2055,
+                "endLine": 2084,
+                "claim": "按动作、资源和身份返回授权结果"
+              },
+              {
+                "path": "datasette/views/database.py",
+                "line": 600,
+                "endLine": 605,
+                "claim": "查询视图在执行前检查访问权限"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 2004,
+                "endLine": 2006,
+                "claim": "资源授权查询读取内部数据库"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py",
+                "datasette/views/database.py",
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "database_registry",
+            "layer": "step-2",
+            "title": "数据库目录管理",
+            "desc": "登记数据库并解析路由",
+            "status": "implemented",
+            "order": 3,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 485,
+                "endLine": 492,
+                "claim": "逐个创建并登记用户数据库"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 933,
+                "endLine": 960,
+                "claim": "按名称或路由读取并登记数据库"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py",
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "user_db",
+            "layer": "step-3",
+            "title": "用户数据数据库",
+            "desc": "连接并读写用户数据库",
+            "status": "implemented",
+            "order": 4,
+            "evidence": [
+              {
+                "path": "datasette/database.py",
+                "line": 176,
+                "endLine": 213,
+                "claim": "创建文件或内存 SQLite 连接"
+              },
+              {
+                "path": "datasette/database.py",
+                "line": 717,
+                "endLine": 748,
+                "claim": "在线程中执行数据库查询"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/database.py",
+                "datasette/database.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "result_rendering",
+            "layer": "step-2",
+            "title": "结果格式输出",
+            "desc": "输出网页与数据格式",
+            "status": "implemented",
+            "order": 5,
+            "evidence": [
+              {
+                "path": "datasette/renderer.py",
+                "line": 33,
+                "endLine": 43,
+                "claim": "定义 JSON 结果编码器"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 2541,
+                "endLine": 2556,
+                "claim": "注册内置及插件输出渲染器"
+              },
+              {
+                "path": "datasette/views/database.py",
+                "line": 893,
+                "endLine": 905,
+                "claim": "查询接口调用匹配的结果渲染器"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/renderer.py",
+                "datasette/app.py",
+                "datasette/views/database.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "r16",
+            "from": "view_dispatch",
+            "to": "sql_api",
+            "label": "进入查询接口",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 0,
+            "relationIds": [
+              "r16"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 2938,
+                "endLine": 2941,
+                "claim": "将查询路径路由到查询视图"
+              }
+            ]
+          },
+          {
+            "id": "r20",
+            "from": "sql_api",
+            "to": "permission_engine",
+            "label": "校验查询权限",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 1,
+            "relationIds": [
+              "r20"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/views/database.py",
+                "line": 600,
+                "endLine": 605,
+                "claim": "执行已保存查询前检查查询访问权限"
+              }
+            ]
+          },
+          {
+            "id": "r21",
+            "from": "sql_api",
+            "to": "database_registry",
+            "label": "解析目标数据库",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 2,
+            "relationIds": [
+              "r21"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/views/database.py",
+                "line": 583,
+                "endLine": 583,
+                "claim": "查询接口解析请求对应数据库"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 3020,
+                "endLine": 3025,
+                "claim": "按数据库路由读取已登记实例"
+              }
+            ]
+          },
+          {
+            "id": "r22",
+            "from": "database_registry",
+            "to": "user_db",
+            "label": "登记数据库实例",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 3,
+            "relationIds": [
+              "r22"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 489,
+                "endLine": 492,
+                "claim": "为每个输入文件创建数据库实例并登记"
+              }
+            ]
+          },
+          {
+            "id": "r24",
+            "from": "sql_api",
+            "to": "result_rendering",
+            "label": "选择结果格式",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 5,
+            "relationIds": [
+              "r24"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/views/database.py",
+                "line": 893,
+                "endLine": 905,
+                "claim": "查询结果按请求格式调用对应渲染器"
+              }
+            ]
+          }
+        ],
+        "showEdgeLabels": true,
+        "layout": {
+          "gapX": 24,
+          "gapY": 24,
+          "fixtureExpectedTemplate": "A"
+        },
+        "subDiagrams": []
+      },
+      {
+        "schemaVersion": 1,
+        "id": "saved-query",
+        "title": "已保存查询管理",
+        "type": "flow",
+        "direction": "LR",
+        "layers": [
+          {
+            "id": "step-0",
+            "name": "第1步"
+          },
+          {
+            "id": "step-1",
+            "name": "第2步"
+          },
+          {
+            "id": "step-2",
+            "name": "第3步"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "view_dispatch",
+            "layer": "step-0",
+            "title": "页面请求调度",
+            "desc": "按请求方法调用页面",
+            "status": "implemented",
+            "order": 0,
+            "evidence": [
+              {
+                "path": "datasette/views/base.py",
+                "line": 117,
+                "endLine": 124,
+                "claim": "视图按请求方法选择处理器并调用"
+              },
+              {
+                "path": "datasette/views/base.py",
+                "line": 165,
+                "endLine": 175,
+                "claim": "将视图类包装为路由处理函数"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/views/base.py",
+                "datasette/views/base.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "sql_api",
+            "layer": "step-0",
+            "title": "查询执行接口",
+            "desc": "执行查询并返回结果",
+            "status": "implemented",
+            "order": 1,
+            "evidence": [
+              {
+                "path": "datasette/views/database.py",
+                "line": 579,
+                "endLine": 605,
+                "claim": "处理查询请求并校验查询权限"
+              },
+              {
+                "path": "datasette/views/database.py",
+                "line": 711,
+                "endLine": 720,
+                "claim": "查询入口解析数据库并检查可见资源"
+              },
+              {
+                "path": "datasette/views/database.py",
+                "line": 863,
+                "endLine": 869,
+                "claim": "查询执行并生成流式表格数据"
+              },
+              {
+                "path": "datasette/views/database.py",
+                "line": 893,
+                "endLine": 905,
+                "claim": "根据格式选择输出渲染器"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/views/database.py",
+                "datasette/views/database.py",
+                "datasette/views/database.py",
+                "datasette/views/database.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "saved_queries",
+            "layer": "step-1",
+            "title": "已保存查询",
+            "desc": "维护可复用查询定义",
+            "status": "implemented",
+            "order": 2,
+            "evidence": [
+              {
+                "path": "datasette/views/stored_queries.py",
+                "line": 251,
+                "endLine": 270,
+                "claim": "创建已保存查询视图"
+              },
+              {
+                "path": "datasette/views/stored_queries.py",
+                "line": 389,
+                "endLine": 390,
+                "claim": "创建视图调用应用保存查询"
+              },
+              {
+                "path": "datasette/stored_queries.py",
+                "line": 93,
+                "endLine": 110,
+                "claim": "查询定义写入内部数据库"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 1135,
+                "endLine": 1161,
+                "claim": "应用对外提供查询保存接口"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/views/stored_queries.py",
+                "datasette/views/stored_queries.py",
+                "datasette/stored_queries.py",
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "internal_db",
+            "layer": "step-2",
+            "title": "内部目录数据库",
+            "desc": "保存目录权限与查询",
+            "status": "implemented",
+            "order": 3,
+            "evidence": [
+              {
+                "path": "datasette/utils/internal_db.py",
+                "line": 27,
+                "endLine": 48,
+                "claim": "定义内部数据库目录表"
+              },
+              {
+                "path": "datasette/utils/internal_db.py",
+                "line": 92,
+                "endLine": 114,
+                "claim": "定义元数据和查询相关表"
+              },
+              {
+                "path": "datasette/utils/internal_db.py",
+                "line": 176,
+                "endLine": 187,
+                "claim": "初始化内部库并读取用户库结构"
+              },
+              {
+                "path": "datasette/stored_queries.py",
+                "line": 93,
+                "endLine": 93,
+                "claim": "已保存查询写入内部数据库"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/utils/internal_db.py",
+                "datasette/utils/internal_db.py",
+                "datasette/utils/internal_db.py",
+                "datasette/stored_queries.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "permission_engine",
+            "layer": "step-1",
+            "title": "资源权限策略",
+            "desc": "按资源规则判断访问",
+            "status": "implemented",
+            "order": 4,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 2055,
+                "endLine": 2084,
+                "claim": "按动作、资源和身份返回授权结果"
+              },
+              {
+                "path": "datasette/views/database.py",
+                "line": 600,
+                "endLine": 605,
+                "claim": "查询视图在执行前检查访问权限"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 2004,
+                "endLine": 2006,
+                "claim": "资源授权查询读取内部数据库"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py",
+                "datasette/views/database.py",
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "user_db",
+            "layer": "step-1",
+            "title": "用户数据数据库",
+            "desc": "连接并读写用户数据库",
+            "status": "implemented",
+            "order": 5,
+            "evidence": [
+              {
+                "path": "datasette/database.py",
+                "line": 176,
+                "endLine": 213,
+                "claim": "创建文件或内存 SQLite 连接"
+              },
+              {
+                "path": "datasette/database.py",
+                "line": 717,
+                "endLine": 748,
+                "claim": "在线程中执行数据库查询"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/database.py",
+                "datasette/database.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "r19",
+            "from": "view_dispatch",
+            "to": "saved_queries",
+            "label": "进入查询管理",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 0,
+            "relationIds": [
+              "r19"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 2911,
+                "endLine": 2921,
+                "claim": "注册数据库级已保存查询列表与创建路由"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 2951,
+                "endLine": 2956,
+                "claim": "注册已保存查询更新与删除路由"
+              }
+            ]
+          },
+          {
+            "id": "r25",
+            "from": "sql_api",
+            "to": "saved_queries",
+            "label": "读取已保存查询",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 1,
+            "relationIds": [
+              "r25"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/views/database.py",
+                "line": 590,
+                "endLine": 595,
+                "claim": "查询路径未匹配数据表时查找已保存查询"
+              }
+            ]
+          },
+          {
+            "id": "r37",
+            "from": "saved_queries",
+            "to": "internal_db",
+            "label": "持久化查询定义",
+            "kind": "db_write",
+            "main": false,
+            "async": true,
+            "order": 2,
+            "relationIds": [
+              "r37"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/stored_queries.py",
+                "line": 93,
+                "endLine": 110,
+                "claim": "保存查询定义到内部数据库"
+              }
+            ]
+          },
+          {
+            "id": "r20",
+            "from": "sql_api",
+            "to": "permission_engine",
+            "label": "校验查询权限",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 3,
+            "relationIds": [
+              "r20"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/views/database.py",
+                "line": 600,
+                "endLine": 605,
+                "claim": "执行已保存查询前检查查询访问权限"
+              }
+            ]
+          },
+          {
+            "id": "r23",
+            "from": "sql_api",
+            "to": "user_db",
+            "label": "执行查询语句",
+            "kind": "db_read",
+            "main": false,
+            "async": true,
+            "order": 4,
+            "relationIds": [
+              "r23"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/views/database.py",
+                "line": 863,
+                "endLine": 869,
+                "claim": "查询接口调用数据库执行查询"
+              },
+              {
+                "path": "datasette/database.py",
+                "line": 717,
+                "endLine": 748,
+                "claim": "数据库执行器运行 SQL 查询"
+              }
+            ]
+          },
+          {
+            "id": "r36",
+            "from": "permission_engine",
+            "to": "internal_db",
+            "label": "读取授权规则",
+            "kind": "db_read",
+            "main": false,
+            "async": true,
+            "order": 5,
+            "relationIds": [
+              "r36"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 1999,
+                "endLine": 2006,
+                "claim": "授权资源查询执行内部数据库查询"
+              }
+            ]
+          }
+        ],
+        "showEdgeLabels": true,
+        "layout": {
+          "gapX": 24,
+          "gapY": 24,
+          "fixtureExpectedTemplate": "A"
+        },
+        "subDiagrams": []
+      },
+      {
+        "schemaVersion": 1,
+        "id": "table-filters",
+        "title": "表格筛选与分面",
+        "type": "flow",
+        "direction": "TB",
+        "layers": [
+          {
+            "id": "step-0",
+            "name": "第1步"
+          },
+          {
+            "id": "step-1",
+            "name": "第2步"
+          },
+          {
+            "id": "step-2",
+            "name": "第3步"
+          },
+          {
+            "id": "step-3",
+            "name": "第4步"
+          },
+          {
+            "id": "step-4",
+            "name": "第5步"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "view_dispatch",
+            "layer": "step-0",
+            "title": "页面请求调度",
+            "desc": "按请求方法调用页面",
+            "status": "implemented",
+            "order": 0,
+            "evidence": [
+              {
+                "path": "datasette/views/base.py",
+                "line": 117,
+                "endLine": 124,
+                "claim": "视图按请求方法选择处理器并调用"
+              },
+              {
+                "path": "datasette/views/base.py",
+                "line": 165,
+                "endLine": 175,
+                "claim": "将视图类包装为路由处理函数"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/views/base.py",
+                "datasette/views/base.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "table_browse",
+            "layer": "step-1",
+            "title": "数据表浏览",
+            "desc": "筛选排序并分页展示",
+            "status": "implemented",
+            "order": 1,
+            "evidence": [
+              {
+                "path": "datasette/views/table.py",
+                "line": 1740,
+                "endLine": 1744,
+                "claim": "表格页面入口刷新结构并处理请求"
+              },
+              {
+                "path": "datasette/views/table.py",
+                "line": 1995,
+                "endLine": 2015,
+                "claim": "从请求生成过滤条件并运行过滤钩子"
+              },
+              {
+                "path": "datasette/views/table.py",
+                "line": 2253,
+                "endLine": 2259,
+                "claim": "执行表格查询并组织列和行"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/views/table.py",
+                "datasette/views/table.py",
+                "datasette/views/table.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "filter_facets",
+            "layer": "step-2",
+            "title": "筛选与数据分面",
+            "desc": "生成过滤条件与分面",
+            "status": "implemented",
+            "order": 2,
+            "evidence": [
+              {
+                "path": "datasette/views/table.py",
+                "line": 1995,
+                "endLine": 2015,
+                "claim": "表格视图构造过滤对象并运行钩子"
+              },
+              {
+                "path": "datasette/filters.py",
+                "line": 304,
+                "endLine": 315,
+                "claim": "过滤器构造查询条件"
+              },
+              {
+                "path": "datasette/facets.py",
+                "line": 143,
+                "endLine": 149,
+                "claim": "分面能力通过应用执行数据查询"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/views/table.py",
+                "datasette/filters.py",
+                "datasette/facets.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "database_registry",
+            "layer": "step-3",
+            "title": "数据库目录管理",
+            "desc": "登记数据库并解析路由",
+            "status": "implemented",
+            "order": 3,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 485,
+                "endLine": 492,
+                "claim": "逐个创建并登记用户数据库"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 933,
+                "endLine": 960,
+                "claim": "按名称或路由读取并登记数据库"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py",
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "user_db",
+            "layer": "step-4",
+            "title": "用户数据数据库",
+            "desc": "连接并读写用户数据库",
+            "status": "implemented",
+            "order": 4,
+            "evidence": [
+              {
+                "path": "datasette/database.py",
+                "line": 176,
+                "endLine": 213,
+                "claim": "创建文件或内存 SQLite 连接"
+              },
+              {
+                "path": "datasette/database.py",
+                "line": 717,
+                "endLine": 748,
+                "claim": "在线程中执行数据库查询"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/database.py",
+                "datasette/database.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "r17",
+            "from": "view_dispatch",
+            "to": "table_browse",
+            "label": "进入表格浏览",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 0,
+            "relationIds": [
+              "r17"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 2958,
+                "endLine": 2961,
+                "claim": "将数据库表路径路由到表格视图"
+              }
+            ]
+          },
+          {
+            "id": "r26",
+            "from": "table_browse",
+            "to": "filter_facets",
+            "label": "生成筛选和分面",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 1,
+            "relationIds": [
+              "r26"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/views/table.py",
+                "line": 1995,
+                "endLine": 2015,
+                "claim": "表格视图构造筛选条件并调用过滤钩子"
+              }
+            ]
+          },
+          {
+            "id": "r27",
+            "from": "filter_facets",
+            "to": "database_registry",
+            "label": "执行分面查询",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 2,
+            "relationIds": [
+              "r27"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/facets.py",
+                "line": 143,
+                "endLine": 149,
+                "claim": "分面组件通过应用查询指定数据库"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 2273,
+                "endLine": 2273,
+                "claim": "应用执行接口从数据库目录取库执行查询"
+              }
+            ]
+          },
+          {
+            "id": "r22",
+            "from": "database_registry",
+            "to": "user_db",
+            "label": "登记数据库实例",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 3,
+            "relationIds": [
+              "r22"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 489,
+                "endLine": 492,
+                "claim": "为每个输入文件创建数据库实例并登记"
+              }
+            ]
+          }
+        ],
+        "showEdgeLabels": true,
+        "layout": {
+          "gapX": 24,
+          "gapY": 24,
+          "fixtureExpectedTemplate": "A"
+        },
+        "subDiagrams": []
+      },
+      {
+        "schemaVersion": 1,
+        "id": "row-and-catalog",
+        "title": "记录维护与目录浏览",
+        "type": "flow",
+        "direction": "LR",
+        "layers": [
+          {
+            "id": "step-0",
+            "name": "第1步"
+          },
+          {
+            "id": "step-1",
+            "name": "第2步"
+          },
+          {
+            "id": "step-2",
+            "name": "第3步"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "view_dispatch",
+            "layer": "step-0",
+            "title": "页面请求调度",
+            "desc": "按请求方法调用页面",
+            "status": "implemented",
+            "order": 0,
+            "evidence": [
+              {
+                "path": "datasette/views/base.py",
+                "line": 117,
+                "endLine": 124,
+                "claim": "视图按请求方法选择处理器并调用"
+              },
+              {
+                "path": "datasette/views/base.py",
+                "line": 165,
+                "endLine": 175,
+                "claim": "将视图类包装为路由处理函数"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/views/base.py",
+                "datasette/views/base.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "row_ops",
+            "layer": "step-1",
+            "title": "单条记录维护",
+            "desc": "读取或修改单条记录",
+            "status": "implemented",
+            "order": 1,
+            "evidence": [
+              {
+                "path": "datasette/views/row.py",
+                "line": 148,
+                "endLine": 150,
+                "claim": "定义单条记录视图"
+              },
+              {
+                "path": "datasette/views/row.py",
+                "line": 786,
+                "endLine": 805,
+                "claim": "删除视图校验后写入数据库"
+              },
+              {
+                "path": "datasette/views/row.py",
+                "line": 831,
+                "endLine": 890,
+                "claim": "更新视图执行记录写入"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/views/row.py",
+                "datasette/views/row.py",
+                "datasette/views/row.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "user_db",
+            "layer": "step-2",
+            "title": "用户数据数据库",
+            "desc": "连接并读写用户数据库",
+            "status": "implemented",
+            "order": 2,
+            "evidence": [
+              {
+                "path": "datasette/database.py",
+                "line": 176,
+                "endLine": 213,
+                "claim": "创建文件或内存 SQLite 连接"
+              },
+              {
+                "path": "datasette/database.py",
+                "line": 717,
+                "endLine": 748,
+                "claim": "在线程中执行数据库查询"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/database.py",
+                "datasette/database.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "catalog_views",
+            "layer": "step-1",
+            "title": "数据目录浏览",
+            "desc": "展示实例与数据库目录",
+            "status": "implemented",
+            "order": 3,
+            "evidence": [
+              {
+                "path": "datasette/views/index.py",
+                "line": 23,
+                "endLine": 34,
+                "claim": "首页校验权限并获取可见数据库"
+              },
+              {
+                "path": "datasette/views/index.py",
+                "line": 157,
+                "endLine": 180,
+                "claim": "响应中返回目录及实例元数据"
+              },
+              {
+                "path": "datasette/views/database.py",
+                "line": 79,
+                "endLine": 82,
+                "claim": "定义数据库页面视图"
+              },
+              {
+                "path": "datasette/views/database.py",
+                "line": 549,
+                "endLine": 549,
+                "claim": "数据库视图解析目标数据库"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/views/index.py",
+                "datasette/views/index.py",
+                "datasette/views/database.py",
+                "datasette/views/database.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "database_registry",
+            "layer": "step-2",
+            "title": "数据库目录管理",
+            "desc": "登记数据库并解析路由",
+            "status": "implemented",
+            "order": 4,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 485,
+                "endLine": 492,
+                "claim": "逐个创建并登记用户数据库"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 933,
+                "endLine": 960,
+                "claim": "按名称或路由读取并登记数据库"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py",
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "internal_db",
+            "layer": "step-2",
+            "title": "内部目录数据库",
+            "desc": "保存目录权限与查询",
+            "status": "implemented",
+            "order": 5,
+            "evidence": [
+              {
+                "path": "datasette/utils/internal_db.py",
+                "line": 27,
+                "endLine": 48,
+                "claim": "定义内部数据库目录表"
+              },
+              {
+                "path": "datasette/utils/internal_db.py",
+                "line": 92,
+                "endLine": 114,
+                "claim": "定义元数据和查询相关表"
+              },
+              {
+                "path": "datasette/utils/internal_db.py",
+                "line": 176,
+                "endLine": 187,
+                "claim": "初始化内部库并读取用户库结构"
+              },
+              {
+                "path": "datasette/stored_queries.py",
+                "line": 93,
+                "endLine": 93,
+                "claim": "已保存查询写入内部数据库"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/utils/internal_db.py",
+                "datasette/utils/internal_db.py",
+                "datasette/utils/internal_db.py",
+                "datasette/stored_queries.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "web_ui",
+            "layer": "step-2",
+            "title": "浏览器交互页面",
+            "desc": "呈现目录表格与查询",
+            "status": "implemented",
+            "order": 6,
+            "evidence": [
+              {
+                "path": "datasette/templates/index.html",
+                "line": 11,
+                "endLine": 22,
+                "claim": "首页模板呈现数据目录"
+              },
+              {
+                "path": "datasette/templates/query.html",
+                "line": 40,
+                "endLine": 40,
+                "claim": "查询页面提供查询表单"
+              },
+              {
+                "path": "datasette/templates/table.html",
+                "line": 59,
+                "endLine": 59,
+                "claim": "表格页面提交筛选请求"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/templates/index.html",
+                "datasette/templates/query.html",
+                "datasette/templates/table.html"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "r18",
+            "from": "view_dispatch",
+            "to": "row_ops",
+            "label": "进入记录操作",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 0,
+            "relationIds": [
+              "r18"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 2962,
+                "endLine": 2965,
+                "claim": "将主键路径路由到单条记录视图"
+              }
+            ]
+          },
+          {
+            "id": "r29",
+            "from": "row_ops",
+            "to": "user_db",
+            "label": "写入记录变更",
+            "kind": "db_write",
+            "main": false,
+            "async": true,
+            "order": 1,
+            "relationIds": [
+              "r29"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/views/row.py",
+                "line": 800,
+                "endLine": 805,
+                "claim": "删除视图执行受控数据库写入"
+              },
+              {
+                "path": "datasette/views/row.py",
+                "line": 831,
+                "endLine": 890,
+                "claim": "更新视图执行记录写入"
+              }
+            ]
+          },
+          {
+            "id": "r15",
+            "from": "view_dispatch",
+            "to": "catalog_views",
+            "label": "进入目录页面",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 2,
+            "relationIds": [
+              "r15"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 2744,
+                "endLine": 2745,
+                "claim": "注册实例目录页面路由"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 2902,
+                "endLine": 2903,
+                "claim": "注册数据库目录页面路由"
+              }
+            ]
+          },
+          {
+            "id": "r30",
+            "from": "catalog_views",
+            "to": "database_registry",
+            "label": "解析数据库页面",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 3,
+            "relationIds": [
+              "r30"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/views/database.py",
+                "line": 549,
+                "endLine": 549,
+                "claim": "数据库页面按路由解析数据库实例"
+              }
+            ]
+          },
+          {
+            "id": "r31",
+            "from": "catalog_views",
+            "to": "internal_db",
+            "label": "读取目录元数据",
+            "kind": "db_read",
+            "main": false,
+            "async": true,
+            "order": 4,
+            "relationIds": [
+              "r31"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/views/index.py",
+                "line": 157,
+                "endLine": 157,
+                "claim": "目录响应读取实例元数据"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 1021,
+                "endLine": 1028,
+                "claim": "实例元数据从内部数据库读取"
+              }
+            ]
+          },
+          {
+            "id": "r32",
+            "from": "catalog_views",
+            "to": "web_ui",
+            "label": "返回目录页面",
+            "kind": "http",
+            "main": false,
+            "async": false,
+            "order": 5,
+            "relationIds": [
+              "r32"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/views/index.py",
+                "line": 175,
+                "endLine": 180,
+                "claim": "目录视图组装网页模板上下文"
+              },
+              {
+                "path": "datasette/views/base.py",
+                "line": 155,
+                "endLine": 161,
+                "claim": "视图将模板渲染为 HTML 响应"
+              }
+            ]
+          }
+        ],
+        "showEdgeLabels": true,
+        "layout": {
+          "gapX": 24,
+          "gapY": 24,
+          "fixtureExpectedTemplate": "A"
+        },
+        "subDiagrams": []
+      },
+      {
+        "schemaVersion": 1,
+        "id": "query-direct-result",
+        "title": "查询结果与数据读取",
+        "type": "flow",
+        "direction": "LR",
+        "layers": [
+          {
+            "id": "step-0",
+            "name": "第1步"
+          },
+          {
+            "id": "step-1",
+            "name": "第2步"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "sql_api",
+            "layer": "step-0",
+            "title": "查询执行接口",
+            "desc": "执行查询并返回结果",
+            "status": "implemented",
+            "order": 0,
+            "column": 2,
+            "evidence": [
+              {
+                "path": "datasette/views/database.py",
+                "line": 579,
+                "endLine": 605,
+                "claim": "处理查询请求并校验查询权限"
+              },
+              {
+                "path": "datasette/views/database.py",
+                "line": 711,
+                "endLine": 720,
+                "claim": "查询入口解析数据库并检查可见资源"
+              },
+              {
+                "path": "datasette/views/database.py",
+                "line": 863,
+                "endLine": 869,
+                "claim": "查询执行并生成流式表格数据"
+              },
+              {
+                "path": "datasette/views/database.py",
+                "line": 893,
+                "endLine": 905,
+                "claim": "根据格式选择输出渲染器"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/views/database.py",
+                "datasette/views/database.py",
+                "datasette/views/database.py",
+                "datasette/views/database.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "user_db",
+            "layer": "step-1",
+            "title": "用户数据数据库",
+            "desc": "连接并读写用户数据库",
+            "status": "implemented",
+            "order": 1,
+            "column": 2,
+            "evidence": [
+              {
+                "path": "datasette/database.py",
+                "line": 176,
+                "endLine": 213,
+                "claim": "创建文件或内存 SQLite 连接"
+              },
+              {
+                "path": "datasette/database.py",
+                "line": 717,
+                "endLine": 748,
+                "claim": "在线程中执行数据库查询"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/database.py",
+                "datasette/database.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "result_rendering",
+            "layer": "step-1",
+            "title": "结果格式输出",
+            "desc": "输出网页与数据格式",
+            "status": "implemented",
+            "order": 2,
+            "column": 4,
+            "evidence": [
+              {
+                "path": "datasette/renderer.py",
+                "line": 33,
+                "endLine": 43,
+                "claim": "定义 JSON 结果编码器"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 2541,
+                "endLine": 2556,
+                "claim": "注册内置及插件输出渲染器"
+              },
+              {
+                "path": "datasette/views/database.py",
+                "line": 893,
+                "endLine": 905,
+                "claim": "查询接口调用匹配的结果渲染器"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/renderer.py",
+                "datasette/app.py",
+                "datasette/views/database.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "r23",
+            "from": "sql_api",
+            "to": "user_db",
+            "label": "执行查询语句",
+            "kind": "db_read",
+            "main": false,
+            "async": true,
+            "order": 0,
+            "relationIds": [
+              "r23"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/views/database.py",
+                "line": 863,
+                "endLine": 869,
+                "claim": "查询接口调用数据库执行查询"
+              },
+              {
+                "path": "datasette/database.py",
+                "line": 717,
+                "endLine": 748,
+                "claim": "数据库执行器运行 SQL 查询"
+              }
+            ]
+          },
+          {
+            "id": "r24",
+            "from": "sql_api",
+            "to": "result_rendering",
+            "label": "选择结果格式",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 1,
+            "relationIds": [
+              "r24"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/views/database.py",
+                "line": 893,
+                "endLine": 905,
+                "claim": "查询结果按请求格式调用对应渲染器"
+              }
+            ]
+          }
+        ],
+        "showEdgeLabels": true,
+        "layout": {
+          "gapX": 24,
+          "gapY": 24,
+          "fixtureExpectedTemplate": "A"
+        },
+        "subDiagrams": []
+      },
+      {
+        "schemaVersion": 1,
+        "id": "table-database-route",
+        "title": "表格数据库解析",
+        "type": "flow",
+        "direction": "LR",
+        "layers": [
+          {
+            "id": "step-0",
+            "name": "第1步"
+          },
+          {
+            "id": "step-1",
+            "name": "第2步"
+          },
+          {
+            "id": "step-2",
+            "name": "第3步"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "table_browse",
+            "layer": "step-0",
+            "title": "数据表浏览",
+            "desc": "筛选排序并分页展示",
+            "status": "implemented",
+            "order": 0,
+            "column": 1,
+            "evidence": [
+              {
+                "path": "datasette/views/table.py",
+                "line": 1740,
+                "endLine": 1744,
+                "claim": "表格页面入口刷新结构并处理请求"
+              },
+              {
+                "path": "datasette/views/table.py",
+                "line": 1995,
+                "endLine": 2015,
+                "claim": "从请求生成过滤条件并运行过滤钩子"
+              },
+              {
+                "path": "datasette/views/table.py",
+                "line": 2253,
+                "endLine": 2259,
+                "claim": "执行表格查询并组织列和行"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/views/table.py",
+                "datasette/views/table.py",
+                "datasette/views/table.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "database_registry",
+            "layer": "step-1",
+            "title": "数据库目录管理",
+            "desc": "登记数据库并解析路由",
+            "status": "implemented",
+            "order": 1,
+            "column": 3,
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 485,
+                "endLine": 492,
+                "claim": "逐个创建并登记用户数据库"
+              },
+              {
+                "path": "datasette/app.py",
+                "line": 933,
+                "endLine": 960,
+                "claim": "按名称或路由读取并登记数据库"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/app.py",
+                "datasette/app.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "user_db",
+            "layer": "step-2",
+            "title": "用户数据数据库",
+            "desc": "连接并读写用户数据库",
+            "status": "implemented",
+            "order": 2,
+            "column": 2,
+            "evidence": [
+              {
+                "path": "datasette/database.py",
+                "line": 176,
+                "endLine": 213,
+                "claim": "创建文件或内存 SQLite 连接"
+              },
+              {
+                "path": "datasette/database.py",
+                "line": 717,
+                "endLine": 748,
+                "claim": "在线程中执行数据库查询"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/database.py",
+                "datasette/database.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "r38",
+            "from": "table_browse",
+            "to": "database_registry",
+            "label": "解析表所属数据库",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 0,
+            "relationIds": [
+              "r38"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 3027,
+                "endLine": 3037,
+                "claim": "表格查询解析数据库和表名"
+              }
+            ]
+          },
+          {
+            "id": "r22",
+            "from": "database_registry",
+            "to": "user_db",
+            "label": "登记数据库实例",
+            "kind": "call",
+            "main": false,
+            "async": false,
+            "order": 1,
+            "relationIds": [
+              "r22"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/app.py",
+                "line": 489,
+                "endLine": 492,
+                "claim": "为每个输入文件创建数据库实例并登记"
+              }
+            ]
+          }
+        ],
+        "showEdgeLabels": true,
+        "layout": {
+          "gapX": 24,
+          "gapY": 24,
+          "fixtureExpectedTemplate": "A"
+        },
+        "subDiagrams": []
+      },
+      {
+        "schemaVersion": 1,
+        "id": "table-data-response",
+        "title": "表格读取与页面返回",
+        "type": "flow",
+        "direction": "LR",
+        "layers": [
+          {
+            "id": "step-0",
+            "name": "第1步"
+          },
+          {
+            "id": "step-1",
+            "name": "第2步"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "table_browse",
+            "layer": "step-0",
+            "title": "数据表浏览",
+            "desc": "筛选排序并分页展示",
+            "status": "implemented",
+            "order": 0,
+            "column": 1,
+            "evidence": [
+              {
+                "path": "datasette/views/table.py",
+                "line": 1740,
+                "endLine": 1744,
+                "claim": "表格页面入口刷新结构并处理请求"
+              },
+              {
+                "path": "datasette/views/table.py",
+                "line": 1995,
+                "endLine": 2015,
+                "claim": "从请求生成过滤条件并运行过滤钩子"
+              },
+              {
+                "path": "datasette/views/table.py",
+                "line": 2253,
+                "endLine": 2259,
+                "claim": "执行表格查询并组织列和行"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/views/table.py",
+                "datasette/views/table.py",
+                "datasette/views/table.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "user_db",
+            "layer": "step-1",
+            "title": "用户数据数据库",
+            "desc": "连接并读写用户数据库",
+            "status": "implemented",
+            "order": 1,
+            "column": 2,
+            "evidence": [
+              {
+                "path": "datasette/database.py",
+                "line": 176,
+                "endLine": 213,
+                "claim": "创建文件或内存 SQLite 连接"
+              },
+              {
+                "path": "datasette/database.py",
+                "line": 717,
+                "endLine": 748,
+                "claim": "在线程中执行数据库查询"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/database.py",
+                "datasette/database.py"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          },
+          {
+            "id": "web_ui",
+            "layer": "step-1",
+            "title": "浏览器交互页面",
+            "desc": "呈现目录表格与查询",
+            "status": "implemented",
+            "order": 2,
+            "column": 1,
+            "evidence": [
+              {
+                "path": "datasette/templates/index.html",
+                "line": 11,
+                "endLine": 22,
+                "claim": "首页模板呈现数据目录"
+              },
+              {
+                "path": "datasette/templates/query.html",
+                "line": 40,
+                "endLine": 40,
+                "claim": "查询页面提供查询表单"
+              },
+              {
+                "path": "datasette/templates/table.html",
+                "line": 59,
+                "endLine": 59,
+                "claim": "表格页面提交筛选请求"
+              }
+            ],
+            "details": {
+              "summary": "合成布局压力测试节点",
+              "responsibilities": [
+                "验证卡片布局"
+              ],
+              "inputs": [],
+              "outputs": [],
+              "depends_on": [],
+              "used_by": [],
+              "key_files": [
+                "datasette/templates/index.html",
+                "datasette/templates/query.html",
+                "datasette/templates/table.html"
+              ],
+              "tech": [],
+              "confidence": {
+                "evidence": [],
+                "inference": [],
+                "pending": []
+              }
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "r28",
+            "from": "table_browse",
+            "to": "user_db",
+            "label": "读取筛选后数据",
+            "kind": "db_read",
+            "main": false,
+            "async": true,
+            "order": 0,
+            "relationIds": [
+              "r28"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/views/table.py",
+                "line": 2253,
+                "endLine": 2259,
+                "claim": "表格视图执行分页查询并读取结果"
+              },
+              {
+                "path": "datasette/database.py",
+                "line": 717,
+                "endLine": 748,
+                "claim": "数据库执行器运行 SQL 查询"
+              }
+            ]
+          },
+          {
+            "id": "r39",
+            "from": "table_browse",
+            "to": "web_ui",
+            "label": "返回表格页面",
+            "kind": "http",
+            "main": false,
+            "async": false,
+            "order": 1,
+            "relationIds": [
+              "r39"
+            ],
+            "evidence": [
+              {
+                "path": "datasette/views/table.py",
+                "line": 1979,
+                "endLine": 1985,
+                "claim": "表格视图把表格上下文渲染为 HTML 响应"
+              }
+            ]
+          }
+        ],
+        "showEdgeLabels": true,
+        "layout": {
+          "gapX": 24,
+          "gapY": 24,
+          "fixtureExpectedTemplate": "A"
+        },
+        "subDiagrams": []
+      }
+    ],
+    "evidence": [],
+    "showEdgeLabels": false,
+    "layout": {
+      "contractVersion": 2
+    },
+    "template": "A",
+    "mainChain": [
+      "request_router",
+      "view_dispatch",
+      "sql_api",
+      "user_db"
+    ],
+    "layerFlows": [
+      {
+        "id": "layer-flow-1",
+        "fromLayer": "access",
+        "toLayer": "orchestration",
+        "label": "请求流转",
+        "evidence": [
+          {
+            "path": "datasette/app.py",
+            "line": 3312,
+            "endLine": 3312,
+            "claim": "路由器调用路径匹配到的视图"
+          },
+          {
+            "path": "datasette/views/base.py",
+            "line": 165,
+            "endLine": 175,
+            "claim": "视图包装函数进入方法调度"
+          }
+        ]
+      },
+      {
+        "id": "layer-flow-2",
+        "fromLayer": "orchestration",
+        "toLayer": "capability",
+        "label": "请求流转",
+        "evidence": [
+          {
+            "path": "datasette/app.py",
+            "line": 2938,
+            "endLine": 2941,
+            "claim": "将查询路径路由到查询视图"
+          }
+        ]
+      },
+      {
+        "id": "layer-flow-3",
+        "fromLayer": "capability",
+        "toLayer": "data",
+        "label": "请求流转",
+        "evidence": [
+          {
+            "path": "datasette/views/database.py",
+            "line": 863,
+            "endLine": 869,
+            "claim": "查询接口调用数据库执行查询"
+          },
+          {
+            "path": "datasette/database.py",
+            "line": 717,
+            "endLine": 748,
+            "claim": "数据库执行器运行 SQL 查询"
+          }
+        ]
+      }
+    ]
+  },
+  "target": {
+    "expectedTemplate": "A",
+    "kind": "固定真实项目回归基线",
+    "expectedOutcome": "valid"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "caseId": "long-label",
+  "diagram": {
+    "schemaVersion": 1,
+    "id": "long-label",
+    "title": "长标签关系",
+    "type": "flow",
+    "direction": "LR",
+    "layers": [
+      {
+        "id": "source",
+        "name": "调用方"
+      },
+      {
+        "id": "target",
+        "name": "目标能力"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "source-1",
+        "layer": "source",
+        "title": "会话管理",
+        "desc": "整理用户当前上下文",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/long-label.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "target-1",
+        "layer": "target",
+        "title": "知识检索",
+        "desc": "查找相关业务知识",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/long-label.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "source-1",
+        "to": "target-1",
+        "label": "合并用户问题与会话历史后生成完整检索条件",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/long-label.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      }
+    ],
+    "subDiagrams": []
+  },
+  "target": {
+    "routingPattern": "single_edge_label_no_overlap",
+    "kind": "合成分支路由基线",
+    "expectedOutcome": "valid"
+  }
+}

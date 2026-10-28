@@ -1,0 +1,513 @@
+{
+  "caseId": "offline-online",
+  "diagram": {
+    "schemaVersion": 1,
+    "id": "offline-online",
+    "title": "离线与在线双链路",
+    "type": "architecture",
+    "direction": "TB",
+    "layers": [
+      {
+        "id": "offline",
+        "name": "离线处理",
+        "desc": "批量准备和索引",
+        "standardType": "other"
+      },
+      {
+        "id": "online",
+        "name": "在线服务",
+        "desc": "请求查询和结果返回",
+        "standardType": "other"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "n01",
+        "layer": "offline",
+        "title": "请求接收",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/offline-online.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/offline-online.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n02",
+        "layer": "offline",
+        "title": "会话管理",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/offline-online.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/offline-online.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n03",
+        "layer": "offline",
+        "title": "路由分发",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 2,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/offline-online.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/offline-online.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n04",
+        "layer": "offline",
+        "title": "任务协调",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 3,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/offline-online.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/offline-online.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n05",
+        "layer": "offline",
+        "title": "数据查询",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 4,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/offline-online.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/offline-online.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n06",
+        "layer": "offline",
+        "title": "结果整理",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 5,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/offline-online.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/offline-online.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n07",
+        "layer": "online",
+        "title": "权限校验",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/offline-online.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/offline-online.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n08",
+        "layer": "online",
+        "title": "配置加载",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/offline-online.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/offline-online.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n09",
+        "layer": "online",
+        "title": "记录保存",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 2,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/offline-online.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/offline-online.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n10",
+        "layer": "online",
+        "title": "状态更新",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 3,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/offline-online.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/offline-online.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n11",
+        "layer": "online",
+        "title": "服务调用",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 4,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/offline-online.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/offline-online.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n12",
+        "layer": "online",
+        "title": "输出处理",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 5,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/offline-online.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/offline-online.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      }
+    ],
+    "edges": [],
+    "showEdgeLabels": false,
+    "layout": {
+      "contractVersion": 2,
+      "pipelineGroups": [
+        {
+          "id": "offline",
+          "name": "离线处理",
+          "nodeIds": [
+            "n01",
+            "n02",
+            "n03",
+            "n04",
+            "n05",
+            "n06"
+          ],
+          "evidence": [
+            {
+              "path": "tests/layout_fixtures/offline-online.json",
+              "line": 1
+            }
+          ]
+        },
+        {
+          "id": "online",
+          "name": "在线服务",
+          "nodeIds": [
+            "n07",
+            "n08",
+            "n09",
+            "n10",
+            "n11",
+            "n12"
+          ],
+          "evidence": [
+            {
+              "path": "tests/layout_fixtures/offline-online.json",
+              "line": 1
+            }
+          ]
+        }
+      ],
+      "pipelineMerge": {
+        "id": "pipeline-merge",
+        "from": "offline",
+        "to": "online",
+        "label": "汇入在线",
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/offline-online.json",
+            "line": 1
+          }
+        ]
+      }
+    },
+    "template": "B",
+    "mainChain": [
+      "n01",
+      "n07"
+    ],
+    "layerFlows": [
+      {
+        "id": "layer-flow-1",
+        "fromLayer": "offline",
+        "toLayer": "online",
+        "label": "请求流转",
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/offline-online.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ]
+      }
+    ]
+  },
+  "target": {
+    "expectedTemplate": "B",
+    "expectedOutcome": "valid"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "caseId": "sequence-return",
+  "diagram": {
+    "schemaVersion": 1,
+    "id": "sequence-return",
+    "title": "同步调用与结果返回",
+    "type": "sequence",
+    "direction": "TB",
+    "layers": [],
+    "nodes": [
+      {
+        "id": "client",
+        "title": "调用方",
+        "desc": "发起查询",
+        "status": "implemented",
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/sequence-return.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "service",
+        "title": "业务服务",
+        "desc": "处理请求",
+        "status": "implemented",
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/sequence-return.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "store",
+        "title": "数据存储",
+        "desc": "读取记录",
+        "status": "implemented",
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/sequence-return.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "q1",
+        "from": "client",
+        "to": "service",
+        "label": "查询请求",
+        "kind": "message",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/sequence-return.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "q2",
+        "from": "service",
+        "to": "store",
+        "label": "读取数据",
+        "kind": "message",
+        "order": 2,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/sequence-return.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "r1",
+        "from": "store",
+        "to": "service",
+        "label": "查询结果",
+        "kind": "message",
+        "order": 3,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/sequence-return.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "r2",
+        "from": "service",
+        "to": "client",
+        "label": "返回响应",
+        "kind": "message",
+        "order": 4,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/sequence-return.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      }
+    ],
+    "subDiagrams": []
+  },
+  "target": {
+    "routingPattern": "sequence_with_return",
+    "kind": "合成分支路由基线",
+    "expectedOutcome": "valid"
+  }
+}

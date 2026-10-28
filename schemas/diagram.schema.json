@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architecture-diagram.local/schema/diagram.schema.json",
+  "title": "架构图中间表示",
+  "type": "object",
+  "required": ["schemaVersion", "id", "title", "type", "direction", "layers", "nodes", "edges"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "id": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "type": {"enum": ["architecture", "sequence", "flow"]},
+    "direction": {"enum": ["TB", "LR"]},
+    "layers": {"type": "array", "items": {"$ref": "#/$defs/layer"}},
+    "nodes": {"type": "array", "items": {"$ref": "#/$defs/node"}},
+    "edges": {"type": "array", "items": {"$ref": "#/$defs/edge"}},
+    "template": {"enum": ["A", "B", "C", "D"], "description": "架构图版式模板：分层泳道、双管线、内核扩展、部署分区。"},
+    "mainChain": {"type": "array", "maxItems": 7, "items": {"type": "string", "minLength": 1}, "description": "主图顶部主链路顺序，值为模块 ID。"},
+    "layerFlows": {"type": "array", "items": {"$ref": "#/$defs/layerFlow"}, "description": "主图层间通道流向，不锚定模块卡片。"},
+    "subDiagrams": {"type": "array", "items": {"$ref": "#"}},
+    "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+    "showEdgeLabels": {"type": "boolean", "description": "主架构图必须为 false；下钻流程图可显示关系标签。"},
+    "layout": {
+      "type": "object",
+      "properties": {
+        "contractVersion": {"const": 2},
+        "projectKind": {"enum": ["application", "library", "deployment"]},
+        "layerMerges": {"type": "array", "items": {"$ref": "#/$defs/layerMerge"}},
+        "pipelineGroups": {"type": "array", "items": {"$ref": "#/$defs/pipelineGroup"}},
+        "pipelineMerge": {"$ref": "#/$defs/pipelineMerge"},
+        "kernelGroups": {"type": "object", "additionalProperties": {"$ref": "#/$defs/displayGroup"}},
+        "deploymentZones": {"type": "array", "items": {"$ref": "#/$defs/displayGroup"}}
+      },
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "layer": {
+      "type": "object", "required": ["id", "name"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "name": {"type": "string", "minLength": 1},
+        "desc": {"type": "string"},
+        "inputs": {"type": "array", "items": {"type": "string"}},
+        "outputs": {"type": "array", "items": {"type": "string"}},
+        "crossCutting": {"type": "boolean"},
+        "standardType": {"enum": ["access", "orchestration", "capability", "business", "data", "governance", "other"]},
+        "pipeline": {"enum": ["offline", "online"]}
+      },
+      "additionalProperties": true
+    },
+    "node": {
+      "type": "object", "required": ["id", "title"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "layer": {"type": "string"},
+        "title": {"type": "string", "minLength": 1},
+        "desc": {"type": "string"},
+        "status": {"enum": ["implemented", "partial", "config_only", "unknown"], "description": "实现证据元数据，不代表模块职责或接入关系；禁止渲染为模块卡片徽标。"},
+        "order": {"type": "integer"},
+        "column": {"type": "integer", "minimum": 0, "description": "可选语义对齐列，仅用于同层泳道之间的水平对齐；不是 x/y 坐标。"},
+        "drilldown": {"type": "string"},
+        "group": {"type": "string", "description": "可选的真实职责分组；只作层内排列线索。"},
+        "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+        "details": {"$ref": "#/$defs/details"},
+        "position": {"type": "object", "properties": {"x": {"type": "number"}, "y": {"type": "number"}}, "additionalProperties": true}
+      },
+      "additionalProperties": true
+    },
+    "edge": {
+      "type": "object", "required": ["id", "from", "to", "label", "kind"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "from": {"type": "string", "minLength": 1},
+        "to": {"type": "string", "minLength": 1},
+        "label": {"type": "string"},
+        "kind": {"enum": ["call", "http", "sse", "db_read", "db_write", "cache", "vector_query", "llm_call", "spawn_task", "message", "event", "governance", "other"]},
+        "main": {"type": "boolean"},
+        "async": {"type": "boolean"},
+        "order": {"type": "number"},
+        "relationIds": {"type": "array", "minItems": 1, "items": {"type": "string"}, "description": "阶段化分析清单中的关系 ID；用于确认没有把已取证关系遗漏在图外。"},
+        "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}}
+      },
+      "additionalProperties": true
+    },
+    "layerFlow": {
+      "type": "object",
+      "required": ["id", "fromLayer", "toLayer", "label", "evidence"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "fromLayer": {"type": "string", "minLength": 1},
+        "toLayer": {"type": "string", "minLength": 1},
+        "label": {"type": "string", "maxLength": 6},
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}},
+        "relationIds": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "displayGroup": {
+      "type": "object", "required": ["name", "nodeIds", "evidence"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "name": {"type": "string", "minLength": 1},
+        "desc": {"type": "string"},
+        "nodeIds": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}}
+      },
+      "additionalProperties": true
+    },
+    "layerMerge": {
+      "allOf": [
+        {"$ref": "#/$defs/displayGroup"},
+        {"type": "object", "required": ["sourceLayerIds", "rationale"],
+         "properties": {
+           "sourceLayerIds": {"type": "array", "minItems": 2, "items": {"type": "string"}},
+           "rationale": {"type": "string", "minLength": 1},
+           "standardType": {"enum": ["access", "orchestration", "capability", "business", "data", "governance", "other"]}
+         }}
+      ]
+    },
+    "pipelineGroup": {
+      "allOf": [
+        {"$ref": "#/$defs/displayGroup"},
+        {"type": "object", "required": ["id"], "properties": {"id": {"enum": ["offline", "online"]}}}
+      ]
+    },
+    "pipelineMerge": {
+      "type": "object", "required": ["from", "to", "evidence"],
+      "properties": {
+        "id": {"type": "string"},
+        "from": {"enum": ["offline", "online"]},
+        "to": {"enum": ["offline", "online"]},
+        "label": {"type": "string", "maxLength": 6},
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}}
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object", "required": ["path"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "line": {"type": "integer", "minimum": 1},
+        "endLine": {"type": "integer", "minimum": 1},
+        "claim": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "details": {
+      "type": "object",
+      "required": ["summary", "responsibilities", "inputs", "outputs", "depends_on", "used_by", "key_files", "tech", "confidence"],
+      "properties": {
+        "summary": {"type": "string", "minLength": 1},
+        "responsibilities": {"type": "array", "maxItems": 4, "items": {"type": "string", "minLength": 1}},
+        "inputs": {"type": "array", "items": {"type": "string"}},
+        "outputs": {"type": "array", "items": {"type": "string"}},
+        "depends_on": {"type": "array", "items": {"type": "string"}},
+        "used_by": {"type": "array", "items": {"type": "string"}},
+        "key_files": {"type": "array", "items": {"type": "string"}},
+        "tech": {"type": "array", "items": {"type": "string"}},
+        "confidence": {"type": "object", "required": ["evidence", "inference", "pending"], "properties": {"evidence": {"type": "array", "items": {"type": "string"}}, "inference": {"type": "array", "items": {"type": "string"}}, "pending": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

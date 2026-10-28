@@ -1,0 +1,105 @@
+{
+  "caseId": "fan-out-2",
+  "diagram": {
+    "schemaVersion": 1,
+    "id": "fan-out-2",
+    "title": "一对2扇出",
+    "type": "flow",
+    "direction": "LR",
+    "layers": [
+      {
+        "id": "source",
+        "name": "调用方"
+      },
+      {
+        "id": "target",
+        "name": "目标能力"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "source-1",
+        "layer": "source",
+        "title": "查询接口",
+        "desc": "分发业务请求",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-out-2.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "target-1",
+        "layer": "target",
+        "title": "业务模块1",
+        "desc": "处理对应业务",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-out-2.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "target-2",
+        "layer": "target",
+        "title": "业务模块2",
+        "desc": "处理对应业务",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-out-2.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "source-1",
+        "to": "target-1",
+        "label": "处理分支1",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-out-2.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "e2",
+        "from": "source-1",
+        "to": "target-2",
+        "label": "处理分支2",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-out-2.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      }
+    ],
+    "subDiagrams": []
+  },
+  "target": {
+    "routingPattern": "fan_out_bus",
+    "kind": "合成分支路由基线",
+    "expectedOutcome": "valid"
+  }
+}

@@ -1,0 +1,255 @@
+{
+  "caseId": "fan-in-seven",
+  "diagram": {
+    "schemaVersion": 1,
+    "id": "fan-in-seven",
+    "title": "七对一汇入",
+    "type": "flow",
+    "direction": "LR",
+    "layers": [
+      {
+        "id": "source",
+        "name": "调用方"
+      },
+      {
+        "id": "target",
+        "name": "目标能力"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "source-1",
+        "layer": "source",
+        "title": "业务模块1",
+        "desc": "提交模型请求",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-in-seven.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "source-2",
+        "layer": "source",
+        "title": "业务模块2",
+        "desc": "提交模型请求",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-in-seven.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "source-3",
+        "layer": "source",
+        "title": "业务模块3",
+        "desc": "提交模型请求",
+        "status": "implemented",
+        "order": 2,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-in-seven.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "source-4",
+        "layer": "source",
+        "title": "业务模块4",
+        "desc": "提交模型请求",
+        "status": "implemented",
+        "order": 3,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-in-seven.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "source-5",
+        "layer": "source",
+        "title": "业务模块5",
+        "desc": "提交模型请求",
+        "status": "implemented",
+        "order": 4,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-in-seven.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "source-6",
+        "layer": "source",
+        "title": "业务模块6",
+        "desc": "提交模型请求",
+        "status": "implemented",
+        "order": 5,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-in-seven.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "source-7",
+        "layer": "source",
+        "title": "业务模块7",
+        "desc": "提交模型请求",
+        "status": "implemented",
+        "order": 6,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-in-seven.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "target-1",
+        "layer": "target",
+        "title": "语言模型",
+        "desc": "返回生成结果",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-in-seven.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "source-1",
+        "to": "target-1",
+        "label": "语义分类",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-in-seven.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "e2",
+        "from": "source-2",
+        "to": "target-1",
+        "label": "意图识别",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-in-seven.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "e3",
+        "from": "source-3",
+        "to": "target-1",
+        "label": "回复生成",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-in-seven.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "e4",
+        "from": "source-4",
+        "to": "target-1",
+        "label": "摘要生成",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-in-seven.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "e5",
+        "from": "source-5",
+        "to": "target-1",
+        "label": "风险判断",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-in-seven.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "e6",
+        "from": "source-6",
+        "to": "target-1",
+        "label": "查询改写",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-in-seven.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "e7",
+        "from": "source-7",
+        "to": "target-1",
+        "label": "内容审核",
+        "kind": "call",
+        "main": true,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/fan-in-seven.json",
+            "line": 1,
+            "claim": "合成连线压力样例；不代表真实代码证据"
+          }
+        ]
+      }
+    ],
+    "subDiagrams": []
+  },
+  "target": {
+    "routingPattern": "fan_in_bus",
+    "kind": "合成分支路由基线",
+    "expectedOutcome": "valid"
+  }
+}

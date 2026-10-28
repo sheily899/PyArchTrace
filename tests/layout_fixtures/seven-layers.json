@@ -1,0 +1,780 @@
+{
+  "caseId": "seven-layers",
+  "diagram": {
+    "schemaVersion": 1,
+    "id": "seven-layers",
+    "title": "布局压力样例",
+    "type": "architecture",
+    "direction": "TB",
+    "layers": [
+      {
+        "id": "L1",
+        "name": "接入层",
+        "desc": "承接本层主要职责",
+        "standardType": "access"
+      },
+      {
+        "id": "L2",
+        "name": "编排层",
+        "desc": "承接本层主要职责",
+        "standardType": "orchestration"
+      },
+      {
+        "id": "L3",
+        "name": "能力层",
+        "desc": "承接本层主要职责",
+        "standardType": "capability"
+      },
+      {
+        "id": "L4",
+        "name": "业务服务层",
+        "desc": "承接本层主要职责",
+        "standardType": "business"
+      },
+      {
+        "id": "L5",
+        "name": "数据层",
+        "desc": "承接本层主要职责",
+        "standardType": "data"
+      },
+      {
+        "id": "L6",
+        "name": "扩展层",
+        "desc": "承接本层主要职责",
+        "standardType": "other"
+      },
+      {
+        "id": "L7",
+        "name": "运行层",
+        "desc": "承接本层主要职责",
+        "standardType": "other"
+      },
+      {
+        "id": "GOV",
+        "name": "治理层",
+        "desc": "贯穿所有层",
+        "crossCutting": true,
+        "standardType": "governance"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "n01",
+        "layer": "L1",
+        "title": "请求接收",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n02",
+        "layer": "L1",
+        "title": "会话管理",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n03",
+        "layer": "L2",
+        "title": "路由分发",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n04",
+        "layer": "L2",
+        "title": "任务协调",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n05",
+        "layer": "L3",
+        "title": "数据查询",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n06",
+        "layer": "L3",
+        "title": "结果整理",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n07",
+        "layer": "L4",
+        "title": "权限校验",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n08",
+        "layer": "L4",
+        "title": "配置加载",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n09",
+        "layer": "L5",
+        "title": "记录保存",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n10",
+        "layer": "L5",
+        "title": "状态更新",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n11",
+        "layer": "L6",
+        "title": "服务调用",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n12",
+        "layer": "L6",
+        "title": "输出处理",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n13",
+        "layer": "L7",
+        "title": "数据读取",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "n14",
+        "layer": "L7",
+        "title": "任务创建",
+        "desc": "承接业务处理",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "g1",
+        "layer": "GOV",
+        "title": "身份校验",
+        "desc": "提供横向保障",
+        "status": "implemented",
+        "order": 0,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "g2",
+        "layer": "GOV",
+        "title": "回复保护",
+        "desc": "提供横向保障",
+        "status": "implemented",
+        "order": 1,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "g3",
+        "layer": "GOV",
+        "title": "审计记录",
+        "desc": "提供横向保障",
+        "status": "implemented",
+        "order": 2,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      },
+      {
+        "id": "g4",
+        "layer": "GOV",
+        "title": "调用监控",
+        "desc": "提供横向保障",
+        "status": "implemented",
+        "order": 3,
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ],
+        "details": {
+          "summary": "合成布局压力测试节点",
+          "responsibilities": [
+            "验证卡片布局"
+          ],
+          "inputs": [],
+          "outputs": [],
+          "depends_on": [],
+          "used_by": [],
+          "key_files": [
+            "tests/layout_fixtures/seven-layers.json"
+          ],
+          "tech": [],
+          "confidence": {
+            "evidence": [],
+            "inference": [],
+            "pending": []
+          }
+        }
+      }
+    ],
+    "edges": [],
+    "showEdgeLabels": false,
+    "layout": {
+      "contractVersion": 2,
+      "layerMerges": [
+        {
+          "id": "merged-3-4",
+          "name": "能力业务",
+          "desc": "合并职责域",
+          "standardType": "other",
+          "sourceLayerIds": [
+            "L3",
+            "L4"
+          ],
+          "rationale": "合成用例声明相邻职责可合并，仅用于验证版面映射",
+          "evidence": [
+            {
+              "path": "tests/layout_fixtures/seven-layers.json",
+              "line": 1
+            }
+          ]
+        }
+      ]
+    },
+    "template": "A",
+    "mainChain": [
+      "n01",
+      "n03",
+      "n05",
+      "n07",
+      "n09",
+      "n11",
+      "n13"
+    ],
+    "layerFlows": [
+      {
+        "id": "layer-flow-1",
+        "fromLayer": "L1",
+        "toLayer": "L2",
+        "label": "请求流转",
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "layer-flow-2",
+        "fromLayer": "L2",
+        "toLayer": "merged-3-4",
+        "label": "请求流转",
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "layer-flow-3",
+        "fromLayer": "merged-3-4",
+        "toLayer": "L5",
+        "label": "请求流转",
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "layer-flow-4",
+        "fromLayer": "L5",
+        "toLayer": "L6",
+        "label": "请求流转",
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ]
+      },
+      {
+        "id": "layer-flow-5",
+        "fromLayer": "L6",
+        "toLayer": "L7",
+        "label": "请求流转",
+        "evidence": [
+          {
+            "path": "tests/layout_fixtures/seven-layers.json",
+            "line": 1,
+            "claim": "合成布局压力样例；不代表真实代码证据"
+          }
+        ]
+      }
+    ]
+  },
+  "target": {
+    "expectedTemplate": "A",
+    "expectedOutcome": "valid"
+  }
+}
