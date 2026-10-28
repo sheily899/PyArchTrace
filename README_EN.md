@@ -52,19 +52,27 @@ You do not need to write JSON, place nodes by hand, or design arrow paths. Tell 
 
 **Generate a project overview**
 
-> Use `$architecture-diagram` to read this Python project and map its runtime architecture from the actual code responsibilities. Show me the layers and primary path first; wait for my confirmation before generating the interactive diagram.
+```text
+Use `$architecture-diagram` to read this Python project and map its runtime architecture from the actual code responsibilities. Show me the layers and primary path first; wait for my confirmation before generating the interactive diagram.
+```
 
 **Trace an end-to-end request**
 
-> Use `$architecture-diagram` to draw a sequence diagram for “user submits a query through results returned.” Show the modules, capabilities, and data reads or writes along the way.
+```text
+Use `$architecture-diagram` to draw a sequence diagram for “user submits a query through results returned.” Show the modules, capabilities, and data reads or writes along the way.
+```
 
 **Explore a module in detail**
 
-> Add a drill-down for the “knowledge retrieval” module. Show how the query is built, retrieved, ranked, and returned.
+```text
+Add a drill-down for the “knowledge retrieval” module. Show how the query is built, retrieved, ranked, and returned.
+```
 
 **Set the analysis scope**
 
-> Focus on the online request path. Skip tests, offline evaluations, and deployment files. Include only relationships supported by the Python source.
+```text
+Focus on the online request path. Skip tests, offline evaluations, and deployment files. Include only relationships supported by the Python source.
+```
 
 You can also say “focus on order processing,” “explain the human handoff path,” or “expand intent recognition” to focus the diagram on what you need to understand.
 
