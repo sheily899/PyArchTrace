@@ -86,7 +86,20 @@ You can also say “focus on order processing,” “explain the human handoff p
 
 ## Quick start
 
-Python 3.10 or newer is required.
+Python 3.10 or newer is required. The first command installs the analysis and rendering CLI; the second installs the Skill into Codex. The second command requires Node.js 22.20 or newer for `npx`.
+
+```powershell
+python -m pip install "git+https://github.com/sheily899/PyArchTrace.git"
+npx skills add sheily899/PyArchTrace --skill architecture-diagram --global --agent codex --yes
+```
+
+After installation, describe the task in natural language in Codex:
+
+```text
+Use $architecture-diagram to analyze this Python project. Show me the module layers and primary path for confirmation, then generate an interactive architecture diagram.
+```
+
+To install only the CLI, run the first command. To contribute from source, clone the repository and install the development extras:
 
 ```powershell
 git clone https://github.com/sheily899/PyArchTrace.git
@@ -94,7 +107,14 @@ cd PyArchTrace
 python -m pip install -e ".[dev,browser]"
 ```
 
-Place the repository in your Codex Skills directory as `architecture-diagram`, then call it with natural-language prompts like the examples above. Browser screenshots require Chrome or Edge installed locally. To use only the CLI, run `python -m pip install -e .`.
+Browser screenshots require Chrome or Edge installed locally. Diagram labels are currently generated in Chinese; this README is available in English to make the project easier to discover and install.
+
+To update later:
+
+```powershell
+python -m pip install --upgrade "git+https://github.com/sheily899/PyArchTrace.git"
+npx skills update architecture-diagram --global --yes
+```
 
 Example CLI project scan:
 

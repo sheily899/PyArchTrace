@@ -86,7 +86,20 @@
 
 ## 快速开始
 
-需要 Python 3.10 或更高版本。
+需要 Python 3.10 或更高版本。推荐用下面两条命令安装：第一条安装分析与渲染 CLI，第二条把 Skill 安装到 Codex。第二条需要 Node.js 22.20 或更高版本提供 `npx`。
+
+```powershell
+python -m pip install "git+https://github.com/sheily899/PyArchTrace.git"
+npx skills add sheily899/PyArchTrace --skill architecture-diagram --global --agent codex --yes
+```
+
+安装后，在 Codex 中用自然语言提出任务，例如：
+
+```text
+使用 $architecture-diagram 阅读当前 Python 项目，先给我确认模块分层和主链路，再生成可交互架构图。
+```
+
+如果只需要命令行工具，可只执行第一条命令。若要从源码参与开发，再克隆仓库并安装开发依赖：
 
 ```powershell
 git clone https://github.com/sheily899/PyArchTrace.git
@@ -94,7 +107,14 @@ cd PyArchTrace
 python -m pip install -e ".[dev,browser]"
 ```
 
-将仓库作为 `architecture-diagram` 放入 Codex 配置的 Skills 目录后，就可以用上面的自然语言方式调用。浏览器截图需要本机安装 Chrome 或 Edge；如果只需使用 CLI，可执行 `python -m pip install -e .`。
+浏览器截图需要本机安装 Chrome 或 Edge。Skill 当前生成中文图中文字；英文版 README 方便更多开发者了解和安装。
+
+更新到最新版：
+
+```powershell
+python -m pip install --upgrade "git+https://github.com/sheily899/PyArchTrace.git"
+npx skills update architecture-diagram --global --yes
+```
 
 CLI 项目盘点示例：
 
