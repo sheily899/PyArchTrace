@@ -9,7 +9,7 @@
 <img alt="Python 3.10+" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white">
 <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill-20232A?logo=openai&logoColor=white">
 
-**Describe what you want to understand. PyArchTrace turns Python source into architecture, sequence, and business-flow diagrams.**
+**PyArchTrace is a source-grounded Python architecture diagram generator and Codex Skill.** Describe what you want to understand, and it maps Python source into architecture, sequence, and end-to-end flow diagrams.
 
 </div>
 
@@ -130,7 +130,7 @@ architecture-diagram scan D:\my-python-project -o D:\my-python-project\docs\arch
 
 ## Further reading
 
-[Skill guide](SKILL.md) · [Source-analysis workflow](references/analysis-stages.md) · [Layout rules](docs/layout-contract-v2.md) · [Relationship routing](docs/edge-group-routing.md) · [Sequence example](examples/sequence-demo.json)
+[Skill guide](skills/architecture-diagram/SKILL.md) · [Source-analysis workflow](references/analysis-stages.md) · [Layout rules](docs/layout-contract-v2.md) · [Relationship routing](docs/edge-group-routing.md) · [Sequence example](examples/sequence-demo.json) · [Distribution and discovery](docs/distribution.md)
 
 ## License
 

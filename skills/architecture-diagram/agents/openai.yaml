@@ -1,0 +1,5 @@
+interface:
+  display_name: "PyArchTrace"
+  short_description: "Python architecture diagrams"
+  brand_color: "#2563EB"
+  default_prompt: "Use $architecture-diagram to analyze this Python codebase from source evidence. Show the module layers and primary path for confirmation, then generate an interactive Chinese architecture, sequence, or flow diagram with drill-down and SVG/HTML export."

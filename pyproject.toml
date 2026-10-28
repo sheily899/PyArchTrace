@@ -28,7 +28,7 @@ where = ["src"]
 architecture_diagram = ["scripts/*.mjs"]
 
 [tool.setuptools.data-files]
-"share/architecture-diagram" = ["SKILL.md"]
+"share/architecture-diagram" = ["skills/architecture-diagram/SKILL.md"]
 "share/architecture-diagram/schemas" = ["schemas/diagram.schema.json", "schemas/analysis.schema.json"]
 "share/architecture-diagram/references" = ["references/analysis-stages.md"]
 

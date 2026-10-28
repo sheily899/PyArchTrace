@@ -106,7 +106,7 @@ def test_full_work_order_remains_compatible_and_uses_authoritative_rules(facts):
 
 def test_skill_and_work_orders_have_one_authoritative_a_to_d_rule_source(facts, analysis):
     rules = analysis_rules_path().read_text(encoding="utf-8").strip()
-    skill = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+    skill = (ROOT / "skills/architecture-diagram/SKILL.md").read_text(encoding="utf-8")
     full = build_work_order(facts=facts, analysis_schema=ANALYSIS_SCHEMA,
                             diagram_schema=DIAGRAM_SCHEMA)
 

@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architecture-diagram.local/schema/analysis.schema.json",
+  "title": "阶段化架构代码分析清单",
+  "type": "object",
+  "required": ["schemaVersion", "project", "coverage", "stageA", "stageB", "stageC", "stageD"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "project": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "repository": {"type": "string"},
+        "revision": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "coverage": {
+      "type": "object",
+      "required": ["analyzed", "notAnalyzed"],
+      "properties": {
+        "analyzed": {"type": "array", "items": {"type": "object", "required": ["scope", "fileCount"], "properties": {"scope": {"type": "string", "minLength": 1}, "fileCount": {"type": "integer", "minimum": 0}, "paths": {"type": "array", "items": {"type": "string"}}, "codeLines": {"type": "integer", "minimum": 0}}, "additionalProperties": false}},
+        "notAnalyzed": {"type": "array", "items": {"type": "object", "required": ["scope", "reason"], "properties": {"scope": {"type": "string", "minLength": 1}, "reason": {"type": "string", "minLength": 1}, "paths": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false}}
+      },
+      "additionalProperties": false
+    },
+    "stageA": {
+      "type": "object",
+      "required": ["status", "candidates"],
+      "properties": {
+        "status": {"const": "complete"},
+        "scanScope": {"type": "string"},
+        "candidates": {"type": "array", "items": {"$ref": "#/$defs/candidate"}}
+      },
+      "additionalProperties": false
+    },
+    "stageB": {
+      "type": "object",
+      "required": ["status", "layers", "modules", "candidateDisposition"],
+      "properties": {
+        "status": {"const": "complete"},
+        "layers": {"type": "array", "items": {"$ref": "#/$defs/layer"}},
+        "modules": {"type": "array", "items": {"$ref": "#/$defs/module"}},
+        "candidateDisposition": {"type": "array", "items": {"$ref": "#/$defs/disposition"}},
+        "densityReview": {"$ref": "#/$defs/densityReview"},
+        "absentRoles": {"type": "array", "items": {"type": "object", "required": ["role", "reason"], "properties": {"role": {"type": "string"}, "reason": {"type": "string"}}, "additionalProperties": false}}
+      },
+      "additionalProperties": false
+    },
+    "stageC": {
+      "type": "object",
+      "required": ["status", "relations"],
+      "properties": {
+        "status": {"const": "complete"},
+        "relations": {"type": "array", "items": {"$ref": "#/$defs/relation"}}
+      },
+      "additionalProperties": false
+    },
+    "stageD": {
+      "type": "object",
+      "required": ["status", "paths", "coverageReview"],
+      "properties": {
+        "status": {"const": "complete"},
+        "paths": {"type": "array", "items": {"$ref": "#/$defs/path"}},
+        "coverageReview": {"$ref": "#/$defs/coverageReview"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "required": ["path", "line", "claim"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "line": {"type": "integer", "minimum": 1},
+        "endLine": {"type": "integer", "minimum": 1},
+        "claim": {"type": "string", "minLength": 1},
+        "url": {"type": "string", "format": "uri"}
+      },
+      "additionalProperties": false
+    },
+    "candidate": {
+      "type": "object",
+      "required": ["id", "kind", "title", "evidence"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}}
+      },
+      "additionalProperties": false
+    },
+    "layer": {
+      "type": "object",
+      "required": ["id", "role", "name", "reason"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "role": {"enum": ["access", "orchestration", "capability", "business", "data_external", "governance", "other", "unclassified"]},
+        "name": {"type": "string", "minLength": 1},
+        "reason": {"type": "string", "minLength": 1},
+        "crossCutting": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "module": {
+      "type": "object",
+      "required": ["id", "layerId", "title", "responsibility", "evidence"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "layerId": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "responsibility": {"type": "string", "minLength": 1},
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}},
+        "isolatedReason": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "disposition": {
+      "type": "object",
+      "required": ["candidateId", "layerId", "decision"],
+      "properties": {
+        "candidateId": {"type": "string", "minLength": 1},
+        "layerId": {"type": "string", "minLength": 1},
+        "decision": {"enum": ["included", "merged", "excluded"]},
+        "moduleId": {"type": "string"},
+        "reason": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "densityReview": {
+      "type": "object",
+      "required": ["targetModulesPerLayer", "layerReviews", "moduleDecompositionReviews"],
+      "properties": {
+        "targetModulesPerLayer": {"type": "object", "required": ["min", "max"], "properties": {"min": {"const": 3}, "max": {"const": 5}}, "additionalProperties": false},
+        "mainGraphException": {"type": "object", "required": ["reason", "evidence"], "properties": {"reason": {"type": "string", "minLength": 1}, "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}}}, "additionalProperties": false},
+        "layerReviews": {"type": "array", "items": {"$ref": "#/$defs/layerDensityReview"}},
+        "moduleDecompositionReviews": {"type": "array", "items": {"$ref": "#/$defs/moduleDecompositionReview"}}
+      },
+      "additionalProperties": false
+    },
+    "layerDensityReview": {
+      "type": "object",
+      "required": ["layerId", "finalModuleIds", "outcome", "secondPassTriggered", "secondPassAction", "sourceCandidateIds", "reason", "evidence"],
+      "properties": {
+        "layerId": {"type": "string", "minLength": 1},
+        "finalModuleIds": {"type": "array", "items": {"type": "string"}},
+        "outcome": {"enum": ["in_target", "below_target_reviewed", "above_target_reviewed", "governance_exempt"]},
+        "secondPassTriggered": {"type": "boolean"},
+        "secondPassAction": {"enum": ["not_needed", "split", "retain_singleton", "retain_after_review"]},
+        "sourceCandidateIds": {"type": "array", "items": {"type": "string"}},
+        "reason": {"type": "string", "minLength": 1},
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}}
+      },
+      "additionalProperties": false
+    },
+    "moduleDecompositionReview": {
+      "type": "object",
+      "required": ["moduleId", "signalsChecked", "signalsFound", "decision", "reason", "evidence"],
+      "properties": {
+        "moduleId": {"type": "string", "minLength": 1},
+        "signalsChecked": {
+          "type": "array", "uniqueItems": true, "minItems": 7,
+          "items": {"enum": ["composite_actions", "state_and_control", "dispatch_and_execution", "multiple_technical_boundaries", "separate_data_purposes", "independent_lifecycle", "independent_relationships"]}
+        },
+        "signalsFound": {
+          "type": "array", "uniqueItems": true,
+          "items": {"enum": ["composite_actions", "state_and_control", "dispatch_and_execution", "multiple_technical_boundaries", "separate_data_purposes", "independent_lifecycle", "independent_relationships"]}
+        },
+        "decision": {"enum": ["retain", "split_again"]},
+        "reason": {"type": "string", "minLength": 1},
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}}
+      },
+      "additionalProperties": false
+    },
+    "relation": {
+      "type": "object",
+      "required": ["id", "from", "to", "kind", "label", "evidence"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "from": {"type": "string", "minLength": 1},
+        "to": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["function_call", "http", "message", "event", "dependency_injection", "configuration", "data_read", "data_write", "file_read", "file_write", "external_call", "model_call", "process_spawn", "retry", "governance", "import", "other"]},
+        "label": {"type": "string", "minLength": 1},
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}},
+        "condition": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "path": {
+      "type": "object",
+      "required": ["id", "title", "entry", "terminal", "terminalType", "nodeIds", "relationIds", "status"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "entry": {"type": "string", "minLength": 1},
+        "terminal": {"type": "string", "minLength": 1},
+        "terminalType": {"enum": ["response", "persisted", "completed", "handoff"]},
+        "nodeIds": {"type": "array", "minItems": 2, "items": {"type": "string"}},
+        "relationIds": {"type": "array", "items": {"type": "string"}},
+        "status": {"enum": ["complete", "gap_found", "blocked"]},
+        "notes": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "coverageReview": {
+      "type": "object",
+      "required": ["candidateInventoryReviewed", "moduleIngressEgressReviewed", "sideEffectsReviewed", "dispatchAndReturnReviewed", "moduleReviews", "iterations", "backfilledRelationIds"],
+      "properties": {
+        "candidateInventoryReviewed": {"type": "boolean"},
+        "moduleIngressEgressReviewed": {"type": "boolean"},
+        "sideEffectsReviewed": {"type": "boolean"},
+        "dispatchAndReturnReviewed": {"type": "boolean"},
+        "moduleReviews": {"type": "array", "items": {"$ref": "#/$defs/moduleReview"}},
+        "iterations": {"type": "integer", "minimum": 1},
+        "backfilledRelationIds": {"type": "array", "items": {"type": "string"}},
+        "note": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "moduleReview": {
+      "type": "object",
+      "required": ["moduleId", "incomingRelationIds", "outgoingRelationIds", "sideEffectRelationIds", "branchesReviewed", "unmodeledActions"],
+      "properties": {
+        "moduleId": {"type": "string", "minLength": 1},
+        "incomingRelationIds": {"type": "array", "items": {"type": "string"}},
+        "outgoingRelationIds": {"type": "array", "items": {"type": "string"}},
+        "sideEffectRelationIds": {"type": "array", "items": {"type": "string"}},
+        "branchesReviewed": {"type": "boolean"},
+        "unmodeledActions": {"type": "array", "items": {"type": "string"}},
+        "note": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

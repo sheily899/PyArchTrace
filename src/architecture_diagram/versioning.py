@@ -18,7 +18,7 @@ def skill_document_path(override: str | Path | None = None) -> Path:
     if override is not None:
         return Path(override)
     candidates = (
-        Path(__file__).resolve().parents[2] / "SKILL.md",
+        Path(__file__).resolve().parents[2] / "skills" / "architecture-diagram" / "SKILL.md",
         Path(sys.prefix) / "share" / "architecture-diagram" / "SKILL.md",
     )
     return next((path for path in candidates if path.is_file()), candidates[0])

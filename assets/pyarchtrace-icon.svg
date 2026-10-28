@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="PyArchTrace">
+  <rect width="512" height="512" rx="112" fill="#2563EB"/>
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="22">
+    <path d="M256 166v74M112 322v-42h288v42M256 240v40M112 322v-42M256 322v-42M400 322v-42"/>
+  </g>
+  <g fill="#FFFFFF">
+    <rect x="172" y="82" width="168" height="84" rx="22"/>
+    <rect x="68" y="322" width="88" height="92" rx="22"/>
+    <rect x="212" y="322" width="88" height="92" rx="22"/>
+    <rect x="356" y="322" width="88" height="92" rx="22"/>
+  </g>
+  <g fill="#2563EB">
+    <circle cx="220" cy="124" r="10"/>
+    <circle cx="256" cy="124" r="10"/>
+    <circle cx="292" cy="124" r="10"/>
+    <path d="M99 355h26v12H99zm0 25h26v12H99zm144-25h26v12h-26zm0 25h26v12h-26zm144-25h26v12h-26zm0 25h26v12h-26z"/>
+  </g>
+</svg>

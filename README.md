@@ -9,7 +9,7 @@
 <img alt="Python 3.10+" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white">
 <img alt="Codex Skill" src="https://img.shields.io/badge/Codex-Skill-20232A?logo=openai&logoColor=white">
 
-**用自然语言描述你想看的系统，PyArchTrace 帮你从 Python 源码整理出架构、时序与业务链路。**
+**PyArchTrace 是面向 Python 代码库的源码驱动架构图生成器与 Codex Skill。**用自然语言描述你想看的系统，它会整理架构、时序与业务链路。
 
 </div>
 
@@ -130,7 +130,7 @@ architecture-diagram scan D:\my-python-project -o D:\my-python-project\docs\arch
 
 ## 延伸阅读
 
-[Skill 使用说明](SKILL.md) · [源码分析流程](references/analysis-stages.md) · [布局规则](docs/layout-contract-v2.md) · [关系图路由](docs/edge-group-routing.md) · [时序图示例](examples/sequence-demo.json)
+[Skill 使用说明](skills/architecture-diagram/SKILL.md) · [源码分析流程](references/analysis-stages.md) · [布局规则](docs/layout-contract-v2.md) · [关系图路由](docs/edge-group-routing.md) · [时序图示例](examples/sequence-demo.json) · [分发与发现](docs/distribution.md)
 
 ## 许可
 

@@ -1,0 +1,17 @@
+{
+  "verdict": "revise",
+  "issues": [
+    {
+      "code": "label_overlap",
+      "description": "连线标签遮挡了中间的模块",
+      "nodeId": "可选内部节点标识",
+      "edgeId": "可选内部连线标识"
+    }
+  ],
+  "adjustments": [
+    {"type": "increase_spacing", "axis": "x", "factor": 1.25},
+    {"type": "move_node", "nodeId": "内部节点标识", "x": 400, "y": 250},
+    {"type": "edit_text", "nodeId": "内部节点标识", "field": "desc", "value": "更简短的中文业务说明"},
+    {"type": "split_required", "reason": "节点过多且跨层连线集中交叉"}
+  ]
+}
